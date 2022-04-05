@@ -1,0 +1,96 @@
+﻿
+@{
+    ViewData["Title"] = "Update";
+}
+
+@model Order
+
+<div class="container-fluid px-4 pt-5">
+    <div class="row">
+        <table class="table table-info table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">SalePrice</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.OrderItems)
+                {
+                    <tr>
+                        <th scope="row">@item.Product.MarkaName</th>
+                        <td>@item.Product.SalePrice</td>
+                    </tr>
+                }
+                <tr>
+                    <div class="form-group d-flex">
+
+                        <form method="post" asp-action="Accepted">
+                            <input type="hidden" asp-for="Status" />
+                            <input asp-for="Id" type="hidden" />
+                            <input asp-for="AppUser" type="hidden" />
+                            <input asp-for="AppUserId" type="hidden" />
+                            @if (!(Model.Status == Skechers.Enum.OrderStatus.Accepted))
+                            {
+                                <button type="submit" class="btn btn-outline-info my-3">Accepted</button>
+                            }
+                            else
+                            {
+                                <button type="submit" class="btn btn-outline-info my-3" style="pointer-events: none;"><i class="fa-solid fa-circle-check" style="color:green"></i></button>
+                            }
+                        </form>
+
+                        <form method="post" asp-action="Pending" class="d-flex justify-content-center">
+                            <input type="hidden" asp-for="Status" />
+                            <input asp-for="Id" type="hidden" />
+                            <input asp-for="AppUser" type="hidden" />
+                            <input asp-for="AppUserId" type="hidden" />
+                            @if (!(Model.Status == Skechers.Enum.OrderStatus.Pending))
+                            {
+                                <button type="submit" class="btn btn-outline-info my-3">Pending</button>
+                            }
+                            else
+                            {
+                                <button type="submit" class="btn btn-outline-info my-3" style="pointer-events: none;"><i class="fa-solid fa-circle-check" style="color:green"></i></button>
+                            }
+                        </form>
+
+                        <form method="post" asp-action="Canceled" class="d-flex justify-content-end">
+                            <input type="hidden" asp-for="Status" />
+                            <input asp-for="Id" type="hidden" />
+                            <input asp-for="AppUser" type="hidden" />
+                            <input asp-for="AppUserId" type="hidden" />
+                            @if (!(Model.Status == Skechers.Enum.OrderStatus.Canceled))
+                            {
+                                <button type="submit" class="btn btn-outline-info my-3">Canceled</button>
+                            }
+                            else
+                            {
+                                <button type="submit" class="btn btn-outline-info my-3" style="pointer-events: none;"><i class="fa-solid fa-circle-check" style="color:green"></i></button>
+                            }
+                        </form>
+
+                        <form method="post" asp-action="Rejected">
+                            <input type="hidden" asp-for="Status" />
+                            <input asp-for="Id" type="hidden" />
+                            <input asp-for="AppUser" type="hidden" />
+                            <input asp-for="AppUserId" type="hidden" />
+                            @if (!(Model.Status == Skechers.Enum.OrderStatus.Rejected))
+                            {
+                                <button type="submit" class="btn btn-outline-info my-3">Rejected</button>
+                            }
+                            else
+                            {
+                                <button type="submit" class="btn btn-outline-info my-3" style="pointer-events: none;"><i class="fa-solid fa-circle-check" style="color:green"></i></button>
+                            }
+                        </form>
+
+                    </div>
+
+                </tr>
+            </tbody>
+        </table>
+        <a asp-action="index" class="btn btn-info">Go to back</a>
+
+    </div>
+</div>

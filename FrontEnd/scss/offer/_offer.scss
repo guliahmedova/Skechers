@@ -1,0 +1,109 @@
+#offer {
+  margin-top: 200px;
+  .dropdownlast {
+    display: flex;
+    justify-content: end;
+    cursor: pointer;
+    background-color: white;
+    input {
+      width: 22px;
+      height: 22px;
+      color: #262626;
+      line-height: 22px;
+      font-size: 15px;
+      font-weight: 500;
+    }
+    .dropdown-menu {
+      background-color: #f0f0f0;
+      border-radius: 6px !important;
+      overflow-y: scroll;
+      height: 150px;
+      li {
+        padding: 10px 0px;
+      }
+    }
+    .btn {
+      border: 1px solid black;
+      border-radius: 6px;
+      color: #000000;
+      font-size: 14px;
+      height: 42px;
+      font-weight: 500;
+    }
+  }
+  #title-text {
+    font-size: 16px;
+    line-height: 14px;
+    font-weight: 500;
+  }
+
+  .form-group {
+    display: flex;
+
+    #dropdown2 {
+      overflow-y: hidden;
+      height: auto;
+    }
+    .dropdown {
+      cursor: pointer;
+      background-color: white;
+      input {
+        width: 22px;
+        height: 22px;
+        color: #262626;
+        line-height: 22px;
+        font-size: 15px;
+        font-weight: 500;
+      }
+      .dropdown-menu {
+        background-color: #f0f0f0;
+        border-radius: 6px !important;
+        overflow-y: scroll;
+        height: 150px;
+        li {
+          padding: 10px 0px;
+        }
+      }
+      .btn {
+        border: 1px solid black;
+        border-radius: 6px;
+        color: #000000;
+        font-size: 14px;
+        height: 42px;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .uygula {
+    button {
+      border-radius: 6px;
+      background-color: #022c57;
+      border: 1px solid #022c57;
+      height: 42px;
+      display: flex;
+      justify-content: center;
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-weight: 600;
+      width: 100%;
+      cursor: pointer;
+    }
+  }
+
+  .uygula:hover {
+    button {
+      background-color: white;
+      border: 1px solid #022c57;
+      color: #022c57;
+      transition: 0.5s all;
+    }
+  }
+}
+
+@font-face {
+  font-family: Mulish;
+  src: url("/asset/fonts/Mulish-Bold.ttf");
+}

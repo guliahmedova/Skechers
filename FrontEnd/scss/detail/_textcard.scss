@@ -1,0 +1,264 @@
+#detail {
+  .hide {
+    display: none;
+  }
+  .card {
+    border: 0;
+    .card-body {
+      display: flex;
+      flex-direction: column;
+      .odeme {
+        border-bottom: 1px solid #022c57;
+        padding-bottom: 10px;
+        cursor: pointer;
+        .odeme-title {
+          display: flex;
+          justify-content: space-between;
+          padding: 20px 0px;
+          p {
+            color: #022c57;
+          }
+        }
+      }
+      .kosullar {
+        border-bottom: 1px solid #022c57;
+        padding-bottom: 10px;
+        cursor: pointer;
+        .kosullar-title {
+          display: flex;
+          justify-content: space-between;
+          padding: 20px 0px;
+          p {
+            color: #022c57;
+          }
+        }
+      }
+      .card-title {
+        font-size: 34px;
+        font-weight: 800;
+        margin-bottom: 0;
+        color: #000;
+        font-family: ExtraBoldMulish, sans-serif;
+        line-height: 1.2;
+      }
+      .shoes-name {
+        font-size: 20px;
+        font-weight: 500;
+        color: #000;
+      }
+      .discount {
+        font-size: 18px;
+        font-weight: 600;
+        color: #d82121;
+        span {
+          font-weight: 500;
+          color: #a8b3bc;
+          font-size: 18px;
+          text-decoration: line-through;
+        }
+      }
+      .price {
+        font-size: 18px;
+        font-weight: 600;
+        color: black;
+      }
+      #stars {
+        font-size: 18px;
+        color: #a8b3bc;
+        display: flex;
+        .item {
+          list-style: none;
+          #degerlendirme {
+            font-size: 15px;
+            line-height: 18px;
+            color: #a8b3bc;
+          }
+        }
+      }
+      .color {
+        font-size: 15px;
+        font-weight: 600;
+        display: flex;
+        img {
+          height: 70px;
+          width: 70px;
+        }
+        span {
+          color: black;
+        }
+      }
+      .beden {
+        .beden-title {
+          display: flex;
+          justify-content: space-between;
+          font-weight: 600;
+          color: #2b2e31;
+          a {
+            color: #2b2e31;
+            font-weight: 600;
+          }
+        }
+        #sizes {
+          margin-top: 21px;
+          .button {
+            float: left;
+            margin: 0 5px 0 0;
+            width: 100px;
+            height: 40px;
+            position: relative;
+          }
+
+          .button label,
+          .button input {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            color: #022c57;
+            border: 1px solid #022c57;
+          }
+
+          .button input[type="radio"] {
+            opacity: 0.011;
+            z-index: 100;
+          }
+
+          .button input[type="radio"]:checked + label {
+            background: #022c57;
+            border-radius: 4px;
+            color: white;
+          }
+
+          .button label {
+            cursor: pointer;
+            z-index: 90;
+            line-height: 1.8em;
+          }
+        }
+      }
+      .about-size {
+        margin-top: 60px;
+        #aboutsizes {
+          .item {
+            list-style: none;
+            font-size: 15px;
+            font-weight: 500;
+            color: #022c57;
+          }
+          .alev {
+            color: #d82121;
+          }
+        }
+      }
+      .button {
+        display: flex;
+        a {
+          color: white;
+          border: 1px solid #022c57;
+          height: 62px;
+          font-size: 18px;
+          font-weight: 800;
+          text-align: center;
+          background-color: #022c57;
+          border-radius: 6px;
+          width: 100%;
+          cursor: pointer;
+          text-decoration: none;
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
+          &:hover {
+            color: #002c57;
+            border: #002c57 solid 1px ;
+            background-color: white;
+            transition: 0.6s all;
+          }
+        }
+      }
+      .button:hover {
+        button {
+          background-color: white;
+          color: #022c57;
+          transition: 0.6s all;
+        }
+      }
+      .fav {
+        button {
+          color: #022c57;
+          border: 1px solid #022c57;
+          height: 62px;
+          font-size: 18px;
+          font-weight: 800;
+          text-align: center;
+          background-color: white;
+          border-radius: 6px;
+          width: 100%;
+        }
+      }
+      .fav:hover {
+        button {
+          background-color: #d82121;
+          color: white;
+          border: 1px solid #d82121;
+          transition: 0.6s all;
+        }
+      }
+      .detay {
+        border-top: 1px solid #022c57;
+        border-bottom: 1px solid #022c57;
+        padding-bottom: 10px;
+        cursor: pointer;
+        .p-title {
+          display: flex;
+          justify-content: space-between;
+          padding: 20px 0px;
+          p {
+            color: #022c57;
+          }
+        }
+        .detay-box {
+          .text-box {
+            font-size: 12px;
+            font-weight: 600;
+            background-color: #f0f0f0;
+            border: 1px solid #f0f0f0;
+            border-radius: 6px;
+            font-weight: 500;
+            color: #002c57;
+            display: flex;
+            justify-content: center;
+            box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+            span {
+              margin-top: 27px;
+            }
+            .main-box {
+              width: 12%;
+
+              img {
+                width: 100%;
+              }
+            }
+          }
+          .cod {
+            span {
+              color: black;
+            }
+          }
+          #detay-list {
+            .item {
+              list-style-type: circle;
+              margin: 11px 0px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@font-face {
+  font-family: ExtraBoldMulish;
+  src: url("/asset/fonts/Mulish-ExtraBold.ttf");
+}

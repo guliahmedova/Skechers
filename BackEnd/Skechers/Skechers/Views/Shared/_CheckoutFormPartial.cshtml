@@ -1,0 +1,93 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@model Order
+@inject UserManager<AppUser> usermanager
+@{
+    AppUser user = null;
+    if (User.Identity.IsAuthenticated)
+    {
+        user = usermanager.Users.FirstOrDefault(x => x.UserName == User.Identity.Name && x.IsAdmin == false);
+    }
+}
+<div class="card px-4 py-4">
+    <div class="title">Checkout</div>
+    <form asp-action="order" id="order-form" asp-controller="product" method="post">
+        <div class="row">
+            @if (user == null)
+            {
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <label asp-for="FullName">Ad/Soyad:</label>
+                        <input asp-for="FullName"
+                               class="form-control"
+                               placeholder="Ad/Soyad..." /> <span class="text-danger" asp-validation-for="FullName"></span>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label asp-for="Email">Email Adress</label>
+                        <input asp-for="Email"
+                               class="form-control"
+                               placeholder="Email Adress..." /> <span class="text-danger" asp-validation-for="Email"></span>
+                    </div>
+                </div>
+            }
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label asp-for="Country">Ülke :</label>
+                    <input asp-for="Country"
+                           class="form-control"
+                           placeholder="Ülke..." /> <span class="text-danger" asp-validation-for="Country"></span>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label asp-for="City">Şehir :</label>
+                    <input asp-for="City"
+                           class="form-control"
+                           placeholder="Şehir..." /> <span class="text-danger" asp-validation-for="City"></span>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label asp-for="Phone">Phone no:</label>
+                    <input asp-for="Phone"
+                           class="form-control"
+                           placeholder="Phone no..." /> <span class="text-danger" asp-validation-for="Phone"></span>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <label asp-for="Address1">Address 1</label>
+                    <input asp-for="Address1"
+                           class="form-control"
+                           placeholder="Address line 1..." /> 
+                    <span class="text-danger" asp-validation-for="Address1"></span>
+                </div>
+                <div class="form-group">
+                      <label class="mt-3" asp-for="Address2">Address 2</label>
+                    <input asp-for="Address2"
+                           class="form-control"
+                           placeholder="Address line 2..." /> 
+                    <span class="text-danger" asp-validation-for="Address2"></span>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label asp-for="Zipcode">Zip Code*</label>
+                    <input asp-for="Zipcode"
+                           class="form-control"
+                           placeholder="Zip Code..." /> <span class="text-danger" asp-validation-for="Zipcode"></span>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <label asp-for="Note">Order Notes</label>
+                    <textarea asp-for="Note"
+                              class="form-control"
+                              placeholder="Notes..."></textarea> <span class="text-danger" asp-validation-for="Note"></span>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

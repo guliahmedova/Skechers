@@ -1,0 +1,60 @@
+﻿@model ProductComment
+
+<div class="modal-content" style="width:auto; height:auto; margin-top:50%">
+    @if (!User.Identity.IsAuthenticated)
+    {
+        <span class="text-center fs-2 mt-5">Hemen Üye ol</span>
+        <a class="text-center fs-3 mt-3 text-decoration-none" style="color:black" asp-action="register" asp-controller="account">Register</a>
+        <span class="text-center fs-4 mt-3"> ve ya </span>
+        <span class="text-center fs-2 mt-3">Giriş Yap</span>
+        <a class="text-center mt-3 mb-5 text-decoration-none fs-3" style="color:black" asp-action="login" asp-controller="account">Login</a>
+    }
+    @if (User.Identity.IsAuthenticated)
+    {
+        <div class="modal-header">
+            <h5 class="modal-title text-center" id="exampleModalLabel">Ürünü Değerlendir</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="start-modal">
+                <p class="mt-4">Genel Puanım</p>
+                <div class="star-rating">
+                    <input id="star-5" type="radio" form="add-comment-modal" name="rate" value="5" />
+                    <label for="star-5" title="5 stars">
+                        <i class="active fa fa-star" aria-hidden="true"></i>
+                    </label>
+                    <input id="star-4" type="radio" form="add-comment-modal" name="rate" value="4" />
+                    <label for="star-4" title="4 stars">
+                        <i class="active fa fa-star" aria-hidden="true"></i>
+                    </label>
+                    <input id="star-3" type="radio" form="add-comment-modal" name="rate" value="3" />
+                    <label for="star-3" title="3 stars">
+                        <i class="active fa fa-star" aria-hidden="true"></i>
+                    </label>
+                    <input id="star-2" type="radio" form="add-comment-modal" name="rate" value="2" />
+                    <label for="star-2" title="2 stars">
+                        <i class="active fa fa-star" aria-hidden="true"></i>
+                    </label>
+                    <input id="star-1" type="radio" form="add-comment-modal" name="rate" value="1" />
+                    <label for="star-1" title="1 star">
+                        <i class="active fa fa-star" aria-hidden="true"></i>
+                    </label>
+                </div>
+                <span class="text-danger" asp-validation-for="Rate"></span>
+            </div>
+            <hr>
+            <form method="post" asp-action="comment" asp-controller="product" id="add-comment-modal">
+                <div class="comment">
+                    <textarea asp-for="Text" id="comment" placeholder="Yorumunuz minimum 5 haneli olmalıdır."></textarea>
+                    <span class="text-danger" asp-validation-for="Text"></span>
+                </div>
+                <div class="footer">
+                    <div class="btn">
+                        <button type="submit">PAYLAŞ</button>
+                    </div>
+                </div>
+                <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+            </form>
+        </div>
+    }
+</div>

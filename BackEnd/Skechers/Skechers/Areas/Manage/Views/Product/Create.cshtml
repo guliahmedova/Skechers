@@ -1,0 +1,123 @@
+﻿@model Product
+
+<div class="container pt-5" style="background-color: #cff4fc">
+    <div class="row">
+        <div class="col-lg-12">
+            <form asp-action="create" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <div class="mb-3">
+                        <label asp-for="MarkaName" class="form-label">MarkaName</label>
+                        <input class="form-control" asp-for="MarkaName">
+                        <span class="text-danger" asp-validation-for="MarkaName"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Name" class="form-label">Name</label>
+                        <input class="form-control" asp-for="Name">
+                        <span class="text-danger" asp-validation-for="Name"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="CostPrice" class="form-label">CostPrice</label>
+                        <input class="form-control" asp-for="CostPrice">
+                        <span class="text-danger" asp-validation-for="CostPrice"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="SalePrice" class="form-label">SalePrice</label>
+                        <input class="form-control" asp-for="SalePrice">
+                        <span class="text-danger" asp-validation-for="SalePrice"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="DiscountPercent" class="form-label">DiscountPercent</label>
+                        <input class="form-control" asp-for="DiscountPercent">
+                        <span class="text-danger" asp-validation-for="DiscountPercent"></span>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-check col-md-4 text-center">
+                        <input class="form-check-input" asp-for="IsNew">
+                        <label class="form-check-label" asp-for="IsNew">
+                            Yeni mi ?
+                        </label>
+                        <span class="text-danger" asp-validation-for="IsNew"></span>
+                    </div>
+                    <div class="form-check col-md-4 text-center">
+                        <input class="form-check-input" asp-for="IsFeatured">
+                        <label class="form-check-label" asp-for="IsFeatured">
+                            Indirimde mi ?
+                        </label>
+                        <span class="text-danger" asp-validation-for="IsFeatured"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="mb-3">
+                        <label asp-for="Code" class="form-label">Code</label>
+                        <input class="form-control" asp-for="Code">
+                        <span class="text-danger" asp-validation-for="Code"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Desc" class="form-label">Desc</label>
+                        <textarea class="form-control" asp-for="Desc"></textarea>
+                        <span class="text-danger" asp-validation-for="Desc"></span>
+                    </div>
+                </div>
+
+                <div class="form-group my-4 col-md-4">
+                    <label asp-for="GenderId">Gender</label>
+                    <select class="form-control" asp-for="GenderId" asp-items="@new SelectList((List<Gender>)ViewBag.Genders,nameof(Gender.Id),nameof(Gender.Name))">
+                    </select>
+                    <span class="text-danger" asp-validation-for="GenderId"></span>
+                </div>
+                <div class="form-group my-4 col-md-4">
+                    <label asp-for="ColorIds">Product Color</label>
+                    <select class="form-control" asp-for="ColorIds" asp-items="@new SelectList((List<Color>)ViewBag.Colors,nameof(Color.Id),nameof(Color.Name))">
+                    </select>
+                    <span class="text-danger" asp-validation-for="ColorIds"></span>
+                </div>
+                <div class="form-group my-4 col-md-4">
+                    <label asp-for="SizeIds">Product Sizes</label>
+                    <select class="form-control" asp-for="SizeIds" asp-items="@new SelectList((List<Size>)ViewBag.Sizes,nameof(Size.Id),nameof(Size.Name))">
+                    </select>
+                    <span class="text-danger" asp-validation-for="SizeIds"></span>
+                </div>
+
+                <div class="form-group my-5">
+                    <div class="form-group my-2 col-md-6">
+                        <label asp-for="PosterFile">PosterFile</label>
+                        <input class="form-control" asp-for="PosterFile">
+                        <span class="text-danger" asp-validation-for="PosterFile"></span>
+                    </div>
+                    <div class="form-group my-2 col-md-6">
+                        <label asp-for="HoverPosterFile">HoverPosterFile</label>
+                        <input class="form-control" asp-for="HoverPosterFile">
+                        <span class="text-danger" asp-validation-for="HoverPosterFile"></span>
+                    </div>
+                    <div class="form-group my-2 col-md-12">
+                        <label asp-for="ImageFiles">ImageFiles</label>
+                        <input class="form-control" asp-for="ImageFiles">
+                        <span class="text-danger" asp-validation-for="ImageFiles"></span>
+                    </div>
+                </div>
+
+                @*<div class="form-row">
+                    @foreach (var item in Model.ProductSizes)
+                    {
+                        <div class="form-group col-lg-4">
+                            <span>@item.Size.Name</span>
+                            <input class="form-control rounded-0" max="100" min="1" asp-for="@item.SizeCount" name="SizeCountList[]" value="@item.SizeCount" style="background: transparent">
+                        </div>
+                    }
+                </div>*@
+
+                <div class="col-lg-12 d-flex justify-content-center">
+                    <button type="submit" class="btn btn-info mb-5 mt-5">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    @await Html.PartialAsync("_ValidationScriptsPartial.cshtml")
+}

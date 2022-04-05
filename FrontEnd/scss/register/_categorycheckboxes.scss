@@ -1,0 +1,62 @@
+#register
+{
+    div label input {margin-right: 100px;}
+
+.cat{
+  background-color: white;
+  border-radius: 4px;
+  border: 1px solid #002b58;
+  overflow: hidden;
+  float: left;
+}
+
+.cat label {
+  float: left; line-height: 3.0em;
+  width: 8.0em; height: 3.0em;
+}
+
+.cat label span {
+  text-align: center;
+  padding: 16px 0;
+  display: block;
+}
+
+.cat label input {
+  position: absolute;
+  display: none;
+  color: #002b58 !important;
+}
+/* selects all of the text within the input element and changes the color of the text */
+.cat label input + span{color: #002b58;}
+
+
+/* This will declare how a selected input will look giving generic properties */
+.cat input:checked + span {
+    color: #ffffff;
+    text-shadow: 0 0  6px rgba(0, 0, 0, 0.8);
+}
+
+
+/*
+This following statements selects each category individually that contains an input element that is a checkbox and is checked (or selected) and chabges the background color of the span element.
+*/
+
+.action input:checked + span{background-color: #002b58; height: auto;}
+.comedy input:checked + span{background-color: #002b58;}
+.crime input:checked + span{background-color: #002b58;}
+}
+
+
+
+
+@media screen and (max-width:1338px)
+{
+    #category
+    {
+        #cate-box
+        {
+            display: flex;
+            justify-content: space-around;
+        }
+    }
+}

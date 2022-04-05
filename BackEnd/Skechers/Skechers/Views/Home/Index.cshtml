@@ -1,0 +1,532 @@
+﻿@model HomeViewModel
+<!-- Main Start -->
+<main>
+    <section id="filter" class="pb-5">
+        <div class="container-fluid px-5">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+
+                    <ul id="filter-navbar">
+                        <li class="item mb-2">
+                            <button class="px-5 py-2 clickbtn active"
+                                    onclick="filterSelection('all')"
+                                    href="#">
+                                Hepsi
+                            </button>
+                        </li>
+                        <li class="item mb-2">
+                            <button class="px-5 py-2 clickbtn"
+                                    onclick="filterSelection('new-product')"
+                                    href="#">
+                                Yeni
+                            </button>
+                        </li>
+                        <li class="item mb-2 ">
+                            <button class="px-5 py-2 clickbtn"
+                                    onclick="filterSelection('indirim-product')"
+                                    href="#">
+                                indirim
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Hepsi start  -->
+                <div class="all-product filterDiv mb-5">
+                    @await Html.PartialAsync("_ProductTabSlider", Model.Products)
+                </div>
+                <!-- Hepsi end -->
+                <!-- New start -->
+                <div class="new-product filterDiv mb-5">
+                    @await Html.PartialAsync("_ProductTabSlider", Model.NewProducts)
+                </div>
+                <!-- new end -->
+                <!-- Indirim start -->
+                <div class="indirim-product filterDiv">
+                    @await Html.PartialAsync("_ProductTabSlider", Model.IndirimProduct)
+                </div>
+                <!-- Indirim end  -->
+
+            </div>
+        </div>
+    </section>
+
+    <!--OFFER-->
+    <section id="offer" class="mt-5">
+        <div class="container-fluid px-5">
+            <div class="row">
+                @foreach (Offer offer in Model.Offers)
+                {
+                    <div class="col-lg-6 col-md-6 col-sm-12 mb-5">
+                        <a asp-action="index" asp-controller="offer" asp-route-id="@offer.Id" class="card">
+                            <img src="~/uploads/products/@offer.Image"
+                                 class="img-fluid"
+                                 alt="" />
+                        </a>
+                        <div class="footer">
+                            <a id="title" class="mt-3 mb-3" asp-action="index" asp-controller="offer" asp-route-id="@offer.Id">@offer.Name</a>
+                            <a id="link" asp-action="index" asp-controller="offer" asp-route-id="@offer.Id">
+                                Hemen Keşfet <i class="fa-solid fa-caret-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+    <!--OFFER-->
+
+    <!--//////////////////////////////////////////////////////////-->
+    <section id="mostsalesitems" class="mb-5">
+        <div class="container-fluid px-5 pb-5">
+            <div class="row">
+                <div class="col-lg-12 mt-5 mb-3 mx-2" id="title">
+                    tükenmek üzere olanlar
+                </div>
+                <div class="owl-carousel owl-theme">
+                    <!-- backend eger indirim varsa birinci carda ki kimi yazilsin yoxdursa ikinci-->
+                    @foreach (var item in Model.Products.Where(x => x.IsNew == true && x.SizeCountList.Count() < 10))
+                    {
+                        <div class="item">
+                            <div class="card pb-3" style="min-height:600px; height:auto">
+                                <a asp-action="detail" asp-controller="product" asp-route-id="@item.Id">
+                                    <img src="~/uploads/products/@item.ProductImages.FirstOrDefault(x=>x.PosterStatus==true)?.Image"
+                                         class="card-img-top"
+                                         alt="..." />
+                                </a>
+                                <div class="hover-box">
+                                    <div class="img">
+                                        <a asp-action="detail" asp-controller="product" asp-route-id="@item.Id">
+                                            <img src="~/uploads/products/@item.ProductImages.FirstOrDefault(x=>x.PosterStatus==false)?.Image" alt="" />
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <a asp-action="detail" asp-controller="product" asp-route-id="@item.Id">
+                                        <h5 class="card-title mb-2">
+                                            @item.MarkaName / <span style="color:green">YENI</span>
+                                        </h5>
+                                    </a>
+                                    <p class="card-text mb-2">@item.Name</p>
+                                    @if (item.DiscountPercent > 0)
+                                    {
+                                        <p class="discount"><span>@item.SalePrice t</span>-@item.DiscountPercent.ToString("#.") %</p>
+                                        <p class="price">@((item.SalePrice*(100-item.DiscountPercent)/100).ToString("#.")) ₺</p>
+                                    }
+                                    else
+                                    {
+                                        <p class="price">@item.CostPrice ₺</p>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--//////////////////////////////////////////////////////////-->
+
+    <section id="kateqoriler" class="mb-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12" id="header">
+                    Popüler Kategoriler
+                    <a class="title mt-3">Ayakkabı</a>
+                </div>
+
+                <div class="col-lg-6 mt-4">
+                    <ul id="cat-list">
+                        <li class="item">
+                            <a href="#">Yürüyüş Ayakkabıları</a>
+                        </li>
+                        <li class="item">
+                            <a href="#">Günlük Ayakkabı</a>
+                        </li>
+                        <li class="item">
+                            <a href="#">Spor Ayakkabı</a>
+                        </li>
+                        <li class="item">
+                            <a href="#">Bot</a>
+                        </li>
+                        <li class="item">
+                            <a href="#">Sneakers</a>
+                        </li>
+                        <li class="item">
+                            <a href="#">Ortopedik Ayakkabı</a>
+                        </li>
+                        <li class="item">
+                            <a href="#">Babet</a>
+                        </li>
+                        <li class="item">
+                            <a href="#">Beyaz Spor Ayakkabı</a>
+                        </li>
+                        <li class="item">
+                            <a href="#">Siyah Spor Ayakkabı</a>
+                        </li>
+                        <li class="item">
+                            <a href="#">Hemşire Terliği</a>
+                        </li>
+                        <li class="item">
+                            <a href="#">Doktor Terliği</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-6 mt-4">
+                    <ul id="cat-list">
+                        <li class="item">
+                            <a href="#">Yürüyüş Ayakkabıları</a>
+                        </li>
+                        <li class="item">
+                            <a href="#">Günlük Ayakkabı</a>
+                        </li>
+                        <li class="item">
+                            <a href="#">Spor Ayakkabı</a>
+                        </li>
+                        <li class="item">
+                            <a href="#">Bot</a>
+                        </li>
+                        <li class="item">
+                            <a href="#">Sneakers</a>
+                        </li>
+                        <li class="item">
+                            <a href="#">Ortopedik Ayakkabı</a>
+                        </li>
+                        <li class="item">
+                            <a href="#">Babet</a>
+                        </li>
+                        <li class="item">
+                            <a href="#">Beyaz Spor Ayakkabı</a>
+                        </li>
+                        <li class="item">
+                            <a href="#">Siyah Spor Ayakkabı</a>
+                        </li>
+                        <li class="item">
+                            <a href="#">Hemşire Terliği</a>
+                        </li>
+                        <li class="item">
+                            <a href="#">Doktor Terliği</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-5">
+        <div class="text-box mb-3" id="moretext">
+            <div class="title">Rahat Ayakkabı & Ayakkabı Sitesi</div>
+            <div class="text">
+                Skechers, her yaştan kullanıcıya, farklı yaşam tarzlarına,
+                beğenilere uygun modeller sunan koleksiyonu ile dünyanın dört bir
+                yanında tercih ediliyor. Sportif tarzın trend belirleyen markası
+                Skechers, günlük hayatta, spor sırasında rahatlığı deneyimlemeni
+                sağlayacak ürünleri ile modada yeni bir sayfa açıyor. Konforun
+                kazandırdığı öz güvenli ve kendinden emin duruşun, şıklığın sırrı
+                olduğu moda dünyasınca yeni yeni keşfediliyor. Skechers ise
+                rahatlığı mükemmel düzeye taşıyan tasarımları ortopedik ayakkabı
+                konforu ile şık bir imaja sahip olmanızı mümkün kılıyor. Üstelik bu
+                konforu başkalarıyla paylaşmak, onlara şık bir imaj hediye etmek de
+                mümkün. Örneğin, Skechers Anneler Günü ayakkabı ve giyim ürünleri
+                onlarca seçenekle bu özel günde seni bekliyor, Anneler Günü'nde
+                sevdiklerine rahatlığı armağan etmek isteyenlerdensen bu ayrıcalıklı
+                deneyimi Skechers modelleriyle yaşatabilirsin. Konfor deneyimi
+                yalnızca annelere özel değil, dilersen Babalar Günü ayakkabı ve
+                giyim hediyeleri için babana birbirinden şık Skechers modelleri
+                seçebilir, onun gün boyu sağlam adımlar atmasına destek olabilirsin.
+                Skechers, özel günlerde senin ve sevdiklerinin yanında.
+            </div>
+            <span class="moreText">
+                <div class="text-box mb-3">
+                    <div class="title">
+                        Skechers ile Konfor Seninle: Şimdi Rahat Hissetmek Moda!
+                    </div>
+                    <div class="text">
+                        Amerika’nın açık ara en büyük sportif giyim ve çocuk markası
+                        olan Skechers, spor ve günlük ayakkabı kategorilerinde ise
+                        pazarın en büyük ikinci firması olmaktan onur duyuyor. 1992
+                        yılından bu yana edindiği sektör tecrübesi ile rahatlığın adresi
+                        olan marka, özgün modelleri, konforu önceleyen tarzı ve
+                        fonksiyonel ayakkabıları ile dünyanın en büyük ayakkabı
+                        fenomenlerinden biri olarak tanınıyor. Dünyanın en büyük
+                        yıldızlarının marka yüzü olduğu Skechers kampanyaları, asıl
+                        başarısını ise sokakta gösteriyor. Konforlu tasarımları
+                        sayesinde vazgeçilmez olan modeller, sokak modasının ikonik
+                        parçaları halini alıyor. Rahat hissetmenin moda olmasını
+                        sağlayan Skechers, bugün dünyanın 200’e yakın ülkesinde 1000’i
+                        aşkın mağazası ile konforu ulaşılabilir kılıyor. 2011 yılından
+                        bu yana ise Olka Spor Malzemeleri Tic. A.Ş. güvencesiyle
+                        Türkiye’de tüketicilerle buluşuyor. Marka, günlük hayatta konfor
+                        sağlayan tasarımlar oluşturmasıyla da pazarda fark yaratıyor.
+                        Ayrıca koleksiyonda performans sporları için kullanılabilen
+                        ürünler de bulunuyor. Kısa zaman öncesine kadar yürüyüş için
+                        ayakkabı almak isteyen bir kullanıcı farklı sporlara yönelik
+                        performans modelleri içinden seçim yapmaya çalışırken, Skechers
+                        sadece yürüyüşe, günlük kullanıma uygun seçenekler sunarak
+                        herkese rahatlığın formülünü veriyor. Günlük yaşama konfor
+                        getiren Skechers ürünleri, global pazarda yakaladığı büyük
+                        başarı ile gurur kaynağı oluyor.
+                    </div>
+                </div>
+
+                <div class="text-box mb-3">
+                    <div class="title">Rahat ve Stil Sahibi Ayakkabılar</div>
+                    <div class="text">
+                        Skechers rahat ayakkabı modelleri, kullanıcılarına gerçek konfor
+                        sağlıyor. Özel tasarım detayları, özgün saya ve taban modelleri
+                        ile fark yaratan ayakkabılar, her zevke uygun alternatif
+                        sunuyor. Ağ kumaş, deri, süet ve sentetik materyaller,
+                        tasarımlarda sık sık kullanılıyor. Kimi modeller tek bir
+                        materyal ile tasarlanırken, kimilerinde birden çok malzeme uyum
+                        içinde şıklık sergiliyor. Sade zevkleri olan, minimalist tarz
+                        sahibi kullanıcılar için tek parça, desensiz sayalar dikkat
+                        çekiyor. Ayağa çorap gibi uyum sağlayan tek parça modeller,
+                        farklı tek renk seçeneklerle sadeliğin şıklığını sergiliyor.
+                        Daha iddialı seçimler yapmak isteyenler, vahşi desenlerin,
+                        yüksek tabanların ve neon renklerin bolca kullanıldığı serilere
+                        yöneliyor. Yılın trendlerini takip edenler için son moda
+                        ayakkabılar, retro sevenler için geçmişe yolculuk yapmayı
+                        sağlayacak nostaljik dokunuşlu tasarımlar bir arada bulunuyor.
+                        Tabanlarda sade görünüm kimi kullanıcıları cezbederken, daha
+                        iddialı seçimlere göz kırpanlar için oymalı tabanlar dikkat
+                        çekiyor. Şık tasarımların her zaman rahatsız olması gerektiğine
+                        dair ön yargıları tek tek yıkan Skechers, çocuk modellerinde ise
+                        ışıklara, canlı renklere, metalik yansımalara ve eğlenceli
+                        nüanslara bol bol yer veriyor. Yetişkin veya çocuk için
+                        tasarlanan tüm modeller, kalite paydasında birleşiyor. Kalitenin
+                        tescili olan Skechers logosu, karizmatik “S” işareti ile
+                        ayakkabıların yan yüzünde bulunuyor. Üstelik Skechers, retro
+                        sevenlere bir de sürpriz yapıyor! Retro tasarımlı
+                        alternatiflerde Skechers’ın heritage logosu kullanılarak,
+                        vintage esintiler pekiştiriliyor. Skechers, şıklık için
+                        rahatlıktan ödün vermek gerekmediğini ispat eden çeşit çeşit
+                        rahat ayakkabı ile dolabının değişmez parçası olmaya
+                        hazırlanıyor.
+                    </div>
+                </div>
+
+                <div class="text-box mb-3">
+                    <div class="title">
+                        En Rahat Ayakkabı Teknolojileri için Skechers!
+                    </div>
+                    <div class="text">
+                        Skechers gücünü son teknolojiden alıyor. Sayadan tabana kadar
+                        tüm parçaların kaliteli olmasının, konforu ne derece etkilediği
+                        kanıtlayan modeller arasında spor ayakkabı çeşitleri öne
+                        çıkıyor. Rahat ayakkabı denildiğinde akla gelen sportif
+                        modellerin teknolojileri Skechers’ın diğer ayakkabı çeşitlerinde
+                        de kullanılıyor. Markanın imza attığı tüm koleksiyon konforlu
+                        ayakkabı kelimesinin karşılığı oluyor. Skechers teknolojileri
+                        ile tanışmaya hazır mısın?
+                        <ul id="text-list">
+                            <li class="item">
+                                İç taban teknolojileri: Uzay çalışmaları esnasında Nasa’nın
+                                keşfettiği hafızalı köpük, Skechers ile ayakkabıların içine
+                                geliyor. Ayakların tüm kıvrımlarını destekleyen yastıklama
+                                sistemi, Skechers’ın büyük keşfi olarak ayakkabı dünyasına
+                                adını yazdırıyor. İç taban teknolojileri onunla da sınırlı
+                                değil. Ayakkabılardan daha çok performans desteği
+                                bekleyenler için özel geliştirilen enerji dönüşümlü iç
+                                tabanlar, daha ferah bir ayakkabı hayal edenler için
+                                tabandan hava almayı sağlayan yeni nesil modeller, yerden
+                                gelen şok etkisinin azaltılmasına destek veren ekstra
+                                tamponlama etkili tabanlar Skechers ile seni rahatlığa davet
+                                ediyor. Üstelik iç tabanlarda antibakteriyel kaplamalar da
+                                kullanılıyor. Bu sayede ayakkabılarda kötü koku oluşumunun
+                                önüne geçilebiliyor. Skechers ayakkabılar uzun süre giyilse
+                                dahi ayakların ideal sıcaklıkta hissetmesine yardımcı olan
+                                özen hava ve nem transferi sistemleriyle tamamlanıyor. Bu
+                                sayede back to school döneminde en çok tercih edilen
+                                modeller Skechers imzası taşıyor. Okulda saatlerce
+                                ayakkabılarla koşan, oynayan, ders dinleyen çocuklar bile
+                                konforlu hissedebiliyor. Ayrıca uzun yolculuklar, gün boyu
+                                ayakta geçen zamanlarda da rahatlıkla Skechers rahat
+                                ayakkabı modelleri giyiliyor.
+                            </li>
+                            <li class="item">
+                                Sayada kullanılan teknolojiler: Skechers ayakkabıların
+                                sayalarında hava panelleri yer alıyor. Böylece her adımda
+                                nefes alan ayakkabılar, içindeki ısının kontrol edilmesine
+                                yardımcı oluyor. Ayağın daha rahat etmesi için özel
+                                tasarlanan geniş tasarımlar, streç bağcıklar, kolay giyilen
+                                bağcıksız ayakkabılar Skechers’ların saya geliştirmelerinin
+                                örneklerini oluşturuyor. Ayakkabılarda yer alan çekme
+                                halkaları ve hızlı giymeye destek veren özel arka
+                                tasarımlar, ufacık değişikliklerin hayatı nasıl da
+                                kolaylaştırdığını göz önüne seriyor. Üstelik özel su itici
+                                teknoloji de bazı sayalarda kullanıcıları karşılıyor.
+                                Böylece hava şartları ne olursa olsun Skechers kullanıcıları
+                                engel tanımıyor.
+                            </li>
+                            <li class="item">
+                                Orta taban teknolojileri: Kullanıcılar orta tabandan neler
+                                bekliyor? Sert hareketlerde bile ayağı koruyan tamponlama
+                                desteği onlara beklediklerinden de fazlasını veriyor.
+                                Ayakkabıların tüm alanı boyunca uzanan özel yastıklamalar,
+                                her yeni modelde daha da gelişiyor. Özellikle performans
+                                sporları ile ilgilenenler, tabanın verdiği sıçrama desteği
+                                ile bir adım öteyi hayal edebiliyor.
+                            </li>
+                            <li class="item">
+                                Alt Taban: Skechers ayakkabıların alt tabanları kauçuktan
+                                yapılıyor ve mükemmel yer tutuş sağlıyor. Her zeminde yere
+                                sağlam basmak isteyenler, koşuda, yürüyüşte, günlük yaşamda,
+                                plajda veya havuzda Skechers ürünlerini tercih ediyor. Tüm
+                                bu özellikler sayesinde kullanıcılar günlük hayattaki her
+                                türlü zorluğa hazırlıklı oluyor. Sert hareketler, uzun süre
+                                dışarıda geçirilen günler, sıcak havalar, zorlu şartlar
+                                kullanıcılar için sorun olmaktan çıkıyor. Skechers ile her
+                                adım, rahatlığın tecrübelendiği bir serüvene dönüşüyor.
+                                Skechers kullanıcıları uzun süre ayakta geçen günlerde bile
+                                daha az yorgunluk hissi ile gülümsüyor.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="text-box mb-3">
+                    <div class="title">
+                        Skechers Rahat Ayakkabılar Her Mevsim Seninle!
+                    </div>
+                    <div class="text">
+                        Skechers’ın rahat ayakkabı modellerinin yalnızca günlük sneakers
+                        ve egzersiz ayakkabıları ile sınırlı olduğunu düşünüyorsan
+                        yanılıyorsun. Koşu ayakkabısı ve yürüyüş ayakkabısı modelleri
+                        için ne kadar özen gösteriliyor, ileri teknolojiler
+                        kullanılıyorsa; terlikler, botlar veya sandaletler için de aynı
+                        kalite ile tasarım yapılıyor. Performans odaklı tasarımlar seni
+                        kendin ile olan yarışında en iyi düzeye getirmek için
+                        çalışırken, günlük modeller en zorlu şartlarda bile sana iyi
+                        hissettirmek için kusursuz tasarımını gözler önüne seriyor.
+                        Yazlık seçeneklerde ıslak ve kuru kullanım, yüksek zemine
+                        tutunma performansı, özel yastıklama sistemleri, kolay
+                        temizlenebilme gibi avantajlar sunulurken, kışlık tasarımlarda
+                        ayağı sıcak tutma, zorlu arazilerde bile rahat hareket etme gibi
+                        fonksiyonlar ayakkabılarda bulunuyor. Tüm detaylar konforun
+                        mevsimi olmadığını, Skechers kalitesinin dört mevsim ayağına
+                        geldiğini gösteriyor.
+                    </div>
+                </div>
+
+                <div class="text-box mb-3">
+                    <div class="title">
+                        Kadın ve Erkek Rahat Ayakkabılarda Son Moda
+                    </div>
+                    <div class="text">
+                        Modayı takip eden değil, belirleyen markalardan biri olan
+                        Skechers, çabasız şıklığın değerini ve konforlu hissetmenin
+                        getirdiği öz güvenin şıklığın ayrılmaz bir parçası olduğunu
+                        biliyor. Kadın spor ayakkabı modellerindeki yılın trendlerini
+                        Skechers koleksiyonundan öğrenebilir veya yılın erkek spor
+                        ayakkabı modasına Skechers’ı takip ederek hakim olabilirsin.
+                        Üstelik şıklık için rahatlıktan taviz vermen de gerekmiyor.
+                        Estetik görünümüyle ilgi uyandıran her model, aynı zamanda
+                        konfor garantisi ile sana ulaşıyor. Her tasarım, ayağında
+                        varlığını unutturacak kadar hafif, tüm kıvrımları kapsayacak
+                        kadar mükemmel yastıklama etkili ve konforlu… Uzun saatler
+                        boyunca ayakta kalsan, saatlerce hareket halinde olsa bile
+                        Skechers’a güvenebilirsin. Yalnız kendin için değil, tüm ailen
+                        için Skechers seçerek rahatlığı alışkanlığınız haline
+                        dönüştürebilirsin. Üstelik tüm Skechers’lar dayanıklılıkları ile
+                        uzun ömür vadediyor. Sıradan bir ayakkabı değil, rahatlık için
+                        yapılan güvenli bir yatırım olan tasarımları tercih ederek,
+                        hayatın en zorlu anlarında senin hep yanında olacak bir yol
+                        arkadaşı edinebilirsin.
+                    </div>
+                </div>
+
+                <div class="text-box mb-3">
+                    <div class="title">
+                        En Çok Tercih Edilen Rahat Çocuk Ayakkabı ve Aksesuar Modelleri
+                        Skechers’ta!
+                    </div>
+                    <div class="text">
+                        Skechers, yetişkin modellerinde olduğu kadar çocuk
+                        tasarımlarında da modanın nabzını tutuyor. Kız çocuk ayakkabı ve
+                        erkek çocuk ayakkabı modellerini süsleyen ışıklar, metalik
+                        detaylar, özel tabanlar, çocuklara küçük yaşlardan itibaren
+                        ikonik stiller elde etme konusunda rehberlik ediyor. Geleceğin
+                        doktorları, kaşifleri, sanatçıları, dansçıları, sporcuları,
+                        çalışkan yetişkinleri olan çocuklar, bugünden konforlu seçimler
+                        yaparak yarına daha iyi hazırlanıyor. Onlar konforun hayatı
+                        nasıl kolaylaştırdığını Skechers ile deneyimleyerek günlük yaşam
+                        maratonunu önde tamamlıyor. Kombinlerin en önemli parçaları olan
+                        ışıklı ayakkabılar bu yarışın bir parçasını oluşturuyor. Sırt
+                        çantası, spor bere, spor şapka ve çorap gibi ürünlerde
+                        çocukların en sevdikleri renkler, desenler yer alıyor. Çocuk
+                        ruhunun eğlencesi tasarımlara yansıyarak kullanıcılara
+                        sunuluyor. Üstelik çoraplarda ter emici pamuklu dokumalar,
+                        çantalarda geniş iç hacim ve bol cep gibi kullanışlı detaylar da
+                        pas geçilmiyor. Her adımda daha rahat hissetmelerini sağlayacak
+                        küçük yardımcılar, kombinlerin anahtar parçalarını oluşturuyor.
+                    </div>
+                </div>
+
+                <div class="text-box mb-3">
+                    <div class="title">
+                        Online Giyim ve Aksesuar için Online Alışverişin En Rahat Yolu
+                    </div>
+                    <div class="text">
+                        Sportif bir kombinin vazgeçilmezi nedir? Elbette Skechers!
+                        Üstelik mükemmel bir Skechers kadını veya erkeği olmak için
+                        ihtiyaç duyduğun tüm kombin parçaları da şimdi aynı adreste.
+                        Sweathirtten spor tshirt ve eşofman altına, çoraplardan beyaz
+                        spor ayakkabı gibi alternatiflere ulaşan bir yelpaze ile sportif
+                        giyimi vazgeçilmez kılan tüm rahat ürünleri seninle kılıyor.
+                        Çeşit çeşit kesim, desen ve renk ile yüzlerce ürün,
+                        kombinlerinle harikalar yaratmanı bekliyor. Kışlık giysilerden
+                        mevsimlik tasarımlara, egzersiz için performans sağlayan
+                        seçeneklerden günlük tarzı çok daha konforlu kılacak parçalara
+                        kadar aradığın tüm sportif kıyafetler, Skechers etiketi ile
+                        dolabına geliyor. Kapsül bir dolapta bile olan klasikler,
+                        iddialı seçimlerden hoşlananları memnun edecek özel tasarımlar
+                        bir koleksiyonda buluşuyor. Bu büyük buluşmaya tanık olmak için
+                        ise Skechers’ı takip etmek yetiyor. Dilersen kombinini Skechers
+                        aksesuarlarla tamamlayabilir, tişörtünle montunla, çorabın ve
+                        eşofmanınla eksiksiz bir Skechers kombini hazırlayabilirsin.
+                    </div>
+                </div>
+
+                <div class="text-box mb-3">
+                    <div class="title">
+                        Online Alışveriş Tutkunlarının Tercihi: Skechers.com.tr!
+                    </div>
+                    <div class="text">
+                        Online alışveriş için güven, hız ve kalite isteyenler
+                        Skechers.com.tr’de alışverişin keyfini sürüyor. İndirimli
+                        Skechers modelleri, outlet kategorilerle kullanıcılarla
+                        buluşuyor. İndirimlerle, alışveriş keyfini daha fazla hissetmene
+                        imkan veriyor. Sezon ürünleri ile trendleri raflarına taşıyan
+                        marka, indirim ürünlerini geçen sezonların favorileri arasından
+                        seçiyor. Böylece kullanıcılar indirim reyonlarından alışveriş
+                        yaparken aldıkları erkek veya kadın sneakers, kıyafet
+                        ürünlerinin kalitesinden emin oluyor. Her modelini birinci sınıf
+                        malzemeler kullanarak tasarlayan marka, indirimli modellerinde
+                        de kaliteden asla ödün vermiyor. Bunun yanı sıra yılbaşı
+                        indirimleri ve sevgililer günü indirimleri ile de kalpleri
+                        fethetmeyi başarıyor. Skechers.com.tr’de peşin fiyatına 2, vade
+                        farkı ile 9 taksit avantajı kullanıcıları karşılıyor. Kullanıcı
+                        dostu arayüz üzerinden ürünleri kolayca inceleyebilir, sepete
+                        atabilir ve adımları takip ederek sipariş oluşturabilirsin.
+                        Skechers modellerini aynı fiyatlarla Skechers mağazalarında da
+                        bulabilir, dilersen alışverişi deneyerek mağazada
+                        gerçekleştirebilirsin.Ayrıca Skechers'ın özel kampanyaları da
+                        yılın belli dönemlerinde seni karşılıyor. Sezon sezonu ve Black
+                        Friday indirimleri ile beklediğin fırsatları bulabilir,
+                        alışverişin en avantajlı halini deneyimleyebilirsin.Her adımda
+                        rahatlık ve destek için sen de Skechers konforu ile hemen
+                        tanış!Her adımda rahatlık ve destek için sen de Skechers konforu
+                        ile hemen tanış!
+                    </div>
+                </div>
+            </span>
+        </div>
+
+        <div class="btns mx-4">
+            <span id="oku">Devamını Oku</span>
+        </div>
+    </section>
+</main>
+<!-- Main End -->
+
+

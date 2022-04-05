@@ -1,0 +1,30 @@
+#detail
+{
+  .star-rating {
+    direction: rtl;
+    display: inline-block;
+    padding: 20px;
+    cursor: default;
+  
+    input[type="radio"] {
+      display: none;
+    }
+  
+    label {
+      color: #bbb;
+      font-size: 18px;
+      padding: 0;
+      cursor: pointer;
+      -webkit-transition: all 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out;
+    }
+  
+    label:hover,
+    label:hover ~ label,
+    input[type="radio"]:checked ~ label {
+      color: #f2b600;
+    }
+  }
+  
+  
+}

@@ -1,0 +1,105 @@
+﻿@model ProfileViewModel
+@{
+    int orderCount = 0;
+    int orderitemcount = 0;
+}
+<main>
+    <section id="account" class="mb-5">
+        <div class="container-fluid px-5 mt-5 mb-5">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Hesab Detayları
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    @await Html.PartialAsync("_ProfileUpdateViewModel", Model.Member)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Siparişler
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <table class="table table-primary table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>Code</th>
+                                                <th>CreatedAt</th>
+                                                <th>Status</th>
+                                                <th>Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var order in Model.Orders)
+                                            {
+                                                orderCount++;
+                                                <tr>
+                                                    <th>№ @orderCount</th>
+                                                    <td>@(order.CodePrefix + order.CodeNumber)</td>
+                                                    <td>@order.CreateAt.ToString("dd.MM.yyyy HH:mm")</td>
+                                                    <td>@order.Status</td>
+                                                    <td>@order.TotalAmount</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+
+                                    <table class="table table-primary table-hover">
+                                        <thead>
+                                            <tr class="info">
+                                                <th>MarkaName</th>
+                                                <th>Price</th>
+                                                <th>DiscountPercent</th>
+                                                <th>SalePrice</th>
+                                                <th>Count</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model.Orders)
+                                            {
+                                                @foreach (var orderitem in item.OrderItems)
+                                                {
+                                                    <tr data-toggle="collapse" class="accordion-toggle" data-target="#demo10">
+                                                        <td><a style="text-decoration:none; color:black" asp-action="detail" asp-controller="product" asp-route-id="@orderitem.ProductId">@orderitem.Product.MarkaName</a></td>
+                                                        <td>@orderitem.SalePrice</td>
+                                                        <td>@orderitem.DiscountPercent </td>
+                                                        <td>@((orderitem.DiscountPercent > 0 ? (orderitem.SalePrice * (1 - orderitem.DiscountPercent / 100)) : orderitem.SalePrice).ToString("0.00"))</td>
+                                                        <td>@orderitem.Count</td>
+                                                    </tr>
+                                                }
+
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                                <a class="accordion-button collapsed" asp-action="LogOut" asp-controller="account">
+                                    Çıkış Yap
+                                </a>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+
+@section Scripts{
+    <script src="~/js/_profil.js"></script>
+}

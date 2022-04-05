@@ -1,0 +1,54 @@
+@import "./reset";
+@import "./index/navbar";
+@import "./index/header";
+@import "./index/footer";
+@import "./index/filter";
+@import "./index/offer";
+@import "./index/mostsale";
+@import "./index/category";
+@import "./index/about";
+@import "./index/blueline";
+@import "./index/copyfooter";
+@import "./index/responsive";
+
+@import "./product/shoes";
+@import "./product/productcard";
+
+@import "./login/login";
+
+@import "./register/register";
+@import "./register/categorycheckboxes";
+
+@import "./detail/title";
+@import "./detail/images";
+@import "./detail/textcard";
+@import "./detail/modals";
+@import "./detail/star";
+@import "./detail/commentmodal";
+
+@import "./favoriler/select";
+@import "./favoriler/favori";
+
+@import "./sebet/sebetheader";
+@import "./sebet/plusminus";
+@import "./sebet/card";
+@import "./sebet/bedendropdown";
+@import "./sebet/ozet";
+
+@import "./forgotpass/forgotp";
+
+@import "./offer/offercard";
+@import "./offer/offer";
+
+@import "./faq/faq";
+
+@import "./indirim/indirim";
+@import "./indirim/indirimcard";
+
+@import "./gizlilik/gizlilik";
+
+@import "./contact/contactus";
+
+@import "./order/order";
+
+@import "./account/account";

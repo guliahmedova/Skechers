@@ -1,0 +1,111 @@
+#sebet {
+  margin-top: 20px;
+
+  .title-1
+  {
+    margin-top: 90px;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  .title-2
+  {
+    margin-top: 90px;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  .table {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    thead {
+      tr {
+        th {
+          line-height: 50px;
+        }
+      }
+    }
+
+    tbody {
+      td 
+      {
+       .price
+       {
+        p 
+        {
+          font-size: 22px;
+          font-weight: 500;
+          display: block;
+          width: fit-content;
+          color: #002c57;
+          font-family: Mulish, sans-serif;
+        }
+       }
+      }
+      tr {
+        th {
+          .card {
+            border: 0ch;
+            .card-body {
+
+              .card-title {
+                a {
+                  font-size: 18px;
+                  font-weight: 700;
+                  text-decoration: underline;
+                  color: #262626;
+                }
+              }
+              .card-text {
+                font-size: 14px;
+                color: #727272;
+                text-transform: capitalize;
+              }
+              .form-check {
+                margin: 0%;
+                padding: 0%;
+                label {
+                  font-size: 14px;
+                  color: #727272;
+                  text-transform: capitalize;
+                }
+                input 
+                {
+                  height: 14px;
+                  width: 17px;
+                  margin: 0%;
+                  padding: 0%;
+                  margin-top: 4px;
+                  margin-right: 3px;
+                }
+              }
+            }
+            a {
+              width: 120px;
+              height: auto;
+              img {
+                width: 100%;
+              }
+            }
+            .card-footer
+            {
+              display: flex;
+              background-color: white;
+border-top: 0ch;
+              a 
+              {
+                font-size: 14px;
+color: #727272;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@font-face {
+  font-family: Mulish;
+  src: url('/asset/fonts/Mulish-Bold.ttf');
+}

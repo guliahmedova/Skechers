@@ -1,0 +1,106 @@
+#sebet {
+  .header
+  {
+    a 
+    {
+      color: #1d1f20;
+      text-decoration: none;
+    }
+  }
+  .indirimpart {
+    .title {
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 14px;
+      color: #1d1f20;
+      text-align: center;
+    }
+    display: flex;
+    justify-content: center;
+    form {
+        display: inline-block;
+        margin: 0 auto;
+      }
+      
+      .pseudo-search {
+        display: inline;
+        border: 2px solid #ccc;
+        border-radius: 100px;
+        padding: 10px 0;
+        transition: background-color 0.5 ease-in-out;
+        button 
+        {
+          padding: 0%;
+        }
+      
+        input {
+          border: 0;
+          background-color: transparent;
+          width: 200px;
+          font-size: 13px;
+          &:focus {
+            // Unsure how to fix this...
+            outline: none;
+          }
+        }
+        
+        button, i {
+          border: none;
+          background: none;
+          cursor: pointer;
+          text-transform: uppercase;
+        }
+        
+        select {
+          border: none;
+        }
+      
+      }
+   
+  }
+
+  #card_2 {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+
+    border-top: 0ch;
+    .table {
+      color: #a3a5a6;
+      box-shadow: none;
+    }
+
+    .btn {
+      a 
+      {
+        background: #002b58;
+        width: 100%;
+        border-radius: 0;
+        height: 50px;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 18px;
+        color: white;
+        text-decoration: none;
+        display: flex;
+        justify-content: center;
+        padding-top: 10px;
+      }
+      button {
+        background: #002b58;
+        width: 100%;
+        border-radius: 0;
+        height: 50px;
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 18px;
+        color: white;
+      }
+    }
+
+    #dvm {
+        color: #a3a5a6;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+  }
+}

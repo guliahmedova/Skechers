@@ -1,0 +1,35 @@
+@media screen and (max-width:991px) {
+    #blueline
+    {
+        .blue_boxes
+        {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+}
+
+@media screen and (max-width:547px) {
+    #filter
+    {
+        #filter-navbar
+        {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+}
+
+@media screen and (max-width:768px) {
+    #blueline
+    {
+        .blue_boxes
+        {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+}

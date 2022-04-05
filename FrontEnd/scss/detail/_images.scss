@@ -1,0 +1,28 @@
+#detail
+{
+    .img-fluid
+    {
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+
+
+        body{font-family:arial;background-color:black;
+            /*background:#000 -webkit-radial-gradient(circle,rgba(255,255,255,0.9),rgba(255,255,255,0)) no-repeat 0 0;*/
+          }
+          #lighttext{font: size 12px;;font-weight:bold;
+            /*background:#333 -webkit-linear-gradient(0deg,rgba(255,255,255,0),rgba(255,255,255,0.9),rgba(255,255,255,0)) no-repeat -50px 0;
+            background: #222 -webkit-gradient(linear, left top, right top, from(#222), to(#222), color-stop(0.5, #fff)) 0 0 no-repeat; */
+            background:#333 -webkit-radial-gradient(circle,rgba(255,255,255,1),rgba(255,255,255,0),rgba(255,255,255,0)) no-repeat -280px -94px;
+            -webkit-background-clip:text;
+            -webkit-background-size:388px;
+            color:rgba(255,255,255,0.1);
+            /*-webkit-text-fill-color:transparent;*/
+            
+            -webkit-animation:ani 2s linear infinite;
+          }
+          
+          @keyframes ani{
+            from{background-position:-280px -94px;}
+            to{background-position:680px -94px;}
+          }
+}

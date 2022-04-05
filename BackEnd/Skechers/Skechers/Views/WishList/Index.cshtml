@@ -1,0 +1,52 @@
+﻿@model WishListViewModel
+<!-- Main Start -->
+<main>
+    <section id="favoriler" class="my-5">
+        <div class="container">
+            <div class="row py-5" id="fav">
+                <div class="col-lg-12 px-5 my-5">
+                    <div class="header-fav">
+                        FAVORİLERİM
+                    </div>
+                </div>
+                <div class="col-lg-12 px-5">
+                    <div class="text-title">
+                        <p>Ürün</p>
+                        <p>Fiyat</p>
+                    </div>
+                </div>
+                @foreach (var item in Model.WishlistItems)
+                {
+                    <div class="col-lg-12 d-flex justify-content-between">
+                        <div class="card px-5">
+                            <a asp-action="detail" asp-controller="product" asp-route-id="@item.Product.Id" id="img">
+                                <img src="~/uploads/products/@item.Product.ProductImages.FirstOrDefault(x=>x.PosterStatus==true)?.Image" alt="">
+                            </a>
+                            <div class="card-title my-3">
+                                <a asp-action="detail" asp-controller="product" asp-route-id="@item.Product.Id">
+                                    @item.Product.MarkaName
+                                </a>
+                                <p class="mt-2">@item.Product.Name</p>
+                            </div>
+                            <div class="last-part">
+                                <a id="kaldir" asp-action="DeleteWish" asp-controller="wishlist" asp-route-id="@item.Product.Id" class="btn">Kaldır</a>
+                            </div>
+                        </div>
+                        <div class="price mt-5 mx-5">
+                            <span>@((item.Product.SalePrice*(100- item.Product.DiscountPercent)/100).ToString("#.00")) TL</span>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+</main>
+<!-- Main End -->
+
+
+
+
+@section Scripts{
+    <script src="./js/_favoriler.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
+}

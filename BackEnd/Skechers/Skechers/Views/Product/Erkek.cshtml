@@ -1,0 +1,184 @@
+﻿@model PagenatedList<Product>
+
+
+@{
+    int count = (Model.PageIndex - 1) * ViewBag.PageSize + 1;
+}
+
+
+<!-- Main Start -->
+<main>
+    <section id="shoes" class="mb-5 mt-0">
+        <div class="container-fluid px-5">
+            <div class="row">
+
+                <!--<div class="col-lg-3 col-md-3 col-sm-6">
+                    <div class="dropdown me-5">
+                        <button class="btn dropdown-toggle px-5"
+                                type="button"
+                                id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            Beden Seçiniz
+                        </button>
+                        <ul class="dropdown-menu px-3"
+                            aria-labelledby="dropdownMenuButton1">
+                            <li><input type="checkbox" /> 35</li>
+                            <li><input type="checkbox" /> 35-38</li>
+                            <li><input type="checkbox" /> 35.5</li>
+                            <li><input type="checkbox" /> 36</li>
+                            <li><input type="checkbox" /> 36.5</li>
+                            <li><input type="checkbox" /> 37</li>
+                            <li><input type="checkbox" /> 37.5</li>
+                            <li><input type="checkbox" /> 38</li>
+                            <li><input type="checkbox" /> 38.5</li>
+                            <li><input type="checkbox" /> 39</li>
+                            <li><input type="checkbox" /> 39-42</li>
+                            <li><input type="checkbox" /> 39.5</li>
+                            <li><input type="checkbox" /> 40</li>
+                            <li><input type="checkbox" /> 41</li>
+                            <li><input type="checkbox" /> 43-46</li>
+                            <li><input type="checkbox" /> L-XL</li>
+                            <li><input type="checkbox" /> M</li>
+                            <li><input type="checkbox" /> OS</li>
+                            <li><input type="checkbox" /> S</li>
+                            <li><input type="checkbox" /> S-M</li>
+                            <li><input type="checkbox" /> STD</li>
+                            <li><input type="checkbox" /> XL</li>
+                            <li><input type="checkbox" /> XS</li>
+                            <li><input type="checkbox" /> XXS</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                    <div class="dropdown">
+                        <button class="btn dropdown-toggle px-5"
+                                type="button"
+                                id="dropdownMenuButton1"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            Cinsiyet Seçiniz
+                        </button>
+                        <ul class="dropdown-menu px-3"
+                            id="dropdown2"
+                            aria-labelledby="dropdownMenuButton1">-->
+                @*@foreach (var gender in Model.Genders)
+                    {
+                        <li>
+                            <a asp-action="filter" asp-controller="product" asp-route-genderId="@gender.Id">
+                                <input type="checkbox" /> @gender.Name
+                            </a>
+                        </li>
+                    }*@
+                <!--</ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                    <div class="uygula">
+                        <button type="submit"
+                                class="px-4 py-2 text-center"
+                                id="uygula-link"
+                                value="uygula">
+                            uygula
+                        </button>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6">
+                    <div class="form-group row">
+                        <div class="dropdownlast">
+                            <button class="btn dropdown-toggle px-5"
+                                    type="button"
+                                    id="dropdownMenuButton1"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                En Yeniler
+                            </button>
+                            <ul class="dropdown-menu px-3"
+                                aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="#">Sıralama</a></li>
+                                <li>
+                                    <a class="dropdown-item" href="#">Fiyata Göre (Artan)</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">Fiyata Göre (Azalan)</a>
+                                </li>
+                                <li><a class="dropdown-item" href="#">En Yeniler</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>-->
+
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-3 col-md-6 col-sm-6 mt-5 mb-4">
+                        <div class="card wrapper pb-3" style="min-height:auto; height:654px">
+                            <a asp-action="detail" asp-controller="product" asp-route-Id="@item.Id">
+                                <img class="img-fluid card-img-top"
+                                     src="~/uploads/products/@item.ProductImages.FirstOrDefault(x=>x.PosterStatus==true)?.Image"
+                                     alt="..." />
+                            </a>
+                            <img id="div1"
+                                 class="img-fluid"
+                                 src="~/uploads/products/@item.ProductImages.FirstOrDefault(x=>x.PosterStatus==false)?.Image"
+                                 alt="" />
+
+                            <div class="card-body">
+                                <a class="heart-icon add-wishlist" asp-action="AddWish" asp-controller="wishlist" asp-route-id="@item.Id">
+                                    <i class="fa-solid fa-heart"></i>
+                                </a>
+                                @if (item.IsNew == true)
+                                {
+                                    <h5 class="card-title">
+                                        Yeni
+                                    </h5>
+                                }
+                                <div class="my-1">
+                                    <a asp-action="detail" asp-controller="product" asp-route-id="@item.Id"
+                                       style="text-decoration:none; color:black"
+                                       class="card-text">@item.MarkaName</a>
+                                </div>
+                                <div class="my-2">
+                                    <a asp-action="detail" asp-controller="product" asp-route-id="@item.Id"
+                                       style="text-decoration:none; color:black">@item.Name</a>
+                                </div>
+                                @if (item.DiscountPercent > 0)
+                                {
+                                    <p class="discount" style="color:red"><span class="pe-2">@item.SalePrice TL</span>-@item.DiscountPercent.ToString("#.") %</p>
+                                    <p class="price">@((item.SalePrice*(100- item.DiscountPercent)/100).ToString("#.00")) ₺</p>
+                                }
+                                else
+                                {
+                                    <p class="price my-2">@item.CostPrice ₺</p>
+                                }
+                                <div class="hover-box">
+                                    <div class="img mb-4 d-flex pt-2 ms-3">
+                                        @foreach (var product in Model)
+                                        {
+                                            <img class="px-1" src="~/uploads/products/@((product.ProductImages.Find(x => x.PosterStatus == null).Image).Take(3).ToList())" alt="" />
+                                        }
+                                    </div>
+                                    <div class="d-flex">
+                                        <div>
+                                            Stoktaki Bedenler:
+                                        </div>
+                                        @for (int i = 0; i < item.ProductSizes.Count; i++)
+                                        {
+                                            <div class="px-1 mb-3 d-flex">
+                                                @item.ProductSizes[i].Size.Name
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                                <a asp-action="DeleteWish" asp-controller="wishlist" asp-route-id="@item.Id" class="moto-icon remove-wishlist">
+                                    <i class="fa-solid fa-heart"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+                
+            </div>
+        </div>
+    </section>
+</main>
+<!-- Main End -->

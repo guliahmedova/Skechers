@@ -1,0 +1,354 @@
+﻿@model ProductDetailViewModel
+
+<!-- Main Start -->
+<main>
+    <section id="detail" class="mb-5">
+        <div class="container-fluid px-5">
+            <div class="row">
+                <div class="col-lg-12">
+                    <a style="text-decoration: none; color: #aaa" asp-action="index" asp-controller="home">Ana Sayfa </a> /
+                    <span>@Model.Product.MarkaName</span>
+                </div>
+                <div class="col-lg-8 mt-5">
+                    <div class="row">
+                        <div class="col-lg-12" id="images">
+                            <div class="row">
+                                @foreach (var image in (Model.Product.ProductImages.Where(x => x.PosterStatus == null)))
+                                {
+                                    <div class="col-lg-6 col-md-6 col-sm-12 mb-4">
+                                        <a href="#"> <img class="img-fluid zoom" src="~/uploads/products/@image.Image" alt=""></a>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mt-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title mb-3">
+                                @Model.Product.MarkaName
+                            </div>
+                            <div class="shoes-name mb-4">
+                                @Model.Product.Name
+                            </div>
+                            @if (Model.Product.DiscountPercent > 0)
+                            {
+                                <div class="discount mb-3"><span class="me-2">@Model.Product.SalePrice TL</span>-@Model.Product.DiscountPercent.ToString("#.") %</div>
+                                <div class="price mb-3">@((Model.Product.SalePrice*(100- Model.Product.DiscountPercent)/100).ToString("#.00")) ₺</div>
+                            }
+                            else
+                            {
+                                <div class="price my-2">@Model.Product.CostPrice ₺</div>
+                            }
+
+
+
+
+                            <!-- Comment Modal -->
+
+                            <div class="modal fade" id="exampleModal3" style="z-index: 9000000000000000;" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <input type="hidden" name="productId" value="@Model.Product.Id" form="add-comment-modal" />
+                                    @await Html.PartialAsync("_ProductCommentPartialView", Model.Comment)
+                                </div>
+                            </div>
+
+                            <!-- Comment Modal End -->
+
+                            @*<div class="color">
+                                Renk:
+                                    @foreach (var color in Model.ProductColors)
+                                    {
+                                        <div class="button2">
+                                            <input type="radio" id="@color.Color.Name" name="color" value="@color.Color.Name" data-colorId="@color.ColorId" />
+                                            <label class="btn btn-default" for="@color.Color.Name">@color.Color.Name</label>
+                                        </div>
+                                    }
+                            </div>*@
+                            <div class="beden">
+                                <div class="beden-title">
+                                    <div class="t1">
+                                        Beden
+                                    </div>
+                                </div>
+                                <div id="sizes" class="size-side">
+                                    @foreach (var size in Model.Product.ProductSizes)
+                                    {
+                                        @if (size.SizeCount > 0)
+                                        {
+                                            <div class="button mb-2">
+                                                <input type="radio" id="a1" name="size" value="@size.Size.Name" data-sizeId="@size.SizeId" />
+                                                <label class="btn btn-default" for="@size.Size.Name">@size.Size.Name</label>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+
+                            <!-- yorum yap-->
+                            <div class="item fs-4 mt-3" style="color: #022c57; cursor:pointer" data-bs-toggle="modal" data-bs-target="#exampleModal3">
+                                <i id="degerlendirme" class="fa-solid fa-comments fa-flip"></i> Yorum Yap
+                            </div>
+
+                            <div class="about-size mt-4">
+                                <ul id="aboutsizes">
+                                    <li class="item">
+                                        <i class="fa-solid fa-motorcycle"></i> Hızlı Teslimat
+                                    </li>
+                                    <li class="item">
+                                        <i class="fa-solid fa-box-archive"></i> Ücretsiz Kargo
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="button my-3">
+                                <a data-productId="@Model.Product.Id" class="add-basket" id="btn">Sepete Ekle</a>
+                            </div>
+                            <div class="fav mb-3 d-flex">
+                                <a style="text-decoration: none;
+                                   color: #022c57; border: 1px solid #022c57; height: 62px;
+                                   font-size: 18px; font-weight: 800; text-align: center;
+                                   background-color: white; border-radius: 6px; width: 100%;"
+                                   class="add-wishlist px-5 py-3" asp-action="AddWish" asp-controller="wishlist" asp-route-id="@Model.Product.Id" id="fav-btn">
+                                    <i class="fa-solid fa-heart me-3"></i>Favorilerime Ekle
+                                </a>
+                            </div>
+                            <div class="detay">
+                                <div class="p-title">
+                                    <p>Detaylar</p>
+                                    <p><i class="fa-solid fa-plus"></i></p>
+                                </div>
+                                <div class="detay-box">
+                                    <div class="text-box my-3">
+                                        <div class="main-box mt-2">
+                                            <img src="~/asset/images/minishoes.svg" alt="">
+                                        </div>
+                                        <span> Kadın Spor Ayakkabı </span>
+                                    </div>
+                                    <div class="cod mb-3">
+                                        Ürün Kodu: <span>@Model.Product.Code</span>
+                                    </div>
+                                    <div class="big-text">
+                                        @Model.Product.Desc
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="odeme" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <div class="odeme-title">
+                                    <p>
+                                        Ödeme & Taksit Bilgisi
+                                    </p>
+                                    <p>
+                                        <i class="fa-solid fa-angle-right"></i>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Modal -->
+
+                            <div class="modal fade" style="z-index: 9000000000000000000000000;" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title text-center" id="exampleModalLabel">Ödeme Seçenekleri</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <img src="~/asset/images/taksit.webp" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="kosullar" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                                <div class="kosullar-title">
+                                    <p>
+                                        Teslimat & İade Koşulları
+                                    </p>
+                                    <p>
+                                        <i class="fa-solid fa-angle-right"></i>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal2" style="z-index: 9000000000000000000000000;" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Teslimat ve Kargo </h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Pandemi döneminde kargo firmalarındaki yoğunluğun artması nedeniyle siparişlerin teslimatında kısa süreli gecikmeler yaşanabilmektedir. Anlayış ve sabrınız için teşekkür ederiz.
+
+
+                                            Değişim Koşulları
+
+
+                                            skechers.com.tr 'den alınan ürünler için, online mağazamızdan değişim işlemi yapılmamaktadır. Faturası kesilmiş ve tarafına teslim edilmiş ürünler için; faturan ile birlikte belirli Skechers mağazalarımızdan renk, beden veya yeni ürün değişikliği yapabilirsin. Farklı satış kanallarından yapılan alışverişlerde, Skechers mağazalarından değişim yapılmamaktadır.
+
+                                            *Siparişindeki ürünün tutarı yeni ürün tutarı ile aynı ise direk değişim yapılır.
+
+
+                                            *Yeni ürün tutarı siparişindeki ürünün tutarından az ise aradaki tutar iade çeki olarak tarafına verilir. Bu çeki belirli Skechers mağazalarımızdan veya skechers.com.tr’de kullanabilirsin.
+
+
+                                            *Yeni ürün tutarı siparişindeki ürün tutarından fazla ise aradaki fark, tarafından tahsil edilir.
+
+                                            İade Koşulları
+
+                                            Kullanılmamış ve ambalajı zarar görmemiş olması şartıyla, “ürün iade formu”nu doldurarak E-İrsaliye veya E-Fatura birlikte, iade şartlarına uyması durumunda sana ulaştığı tarihten itibaren 30 gün içerisinde MNG kargo ile ücretsiz olarak tarafımıza gönderebilirsin. Kullanılmış, ambalajı açılmış veya benzeri nedenlerle orijinalliğini kaybetmiş ürünlerin iadesi kabul edilmemektedir. Farklı satış kanallarından yapılan alışverişlerde Skechers mağazalarından iade yapılmamaktadır.
+
+                                            Gelen ürün öncelikle Skechers inceleme ekibi tarafından incelenir. Skechers inceleme ekibi üründe ve ambalajında herhangi bir açılma, bozulma, kırılma, tahrip, yırtılma ve kullanılma durumu tespit ederse ürünü iade almayacak ve bedelini iade etmeyecektir.
+
+                                            İade ettiğin ürün bize ulaştığında ve onaylandığında, tarafına e-posta bilgilendirmesi yapılacaktır. İade şartlarına uyması durumunda, 10 iş günü içerisinde ürün tutarı siparişi vermiş olduğunuz kartınıza iade edilir. Taksitli yaptığınız alışverişlerde Skechers bankanıza tek seferde ödeme yapar, bankanız tarafınıza bu ödemeyi taksitli olarak gerçekleştirir.
+
+                                            İadeni istersen iade çeki almak koşulu ile belirli Skechers mağazalarımızdan da gerçekleştirebilirsin. Mağazadan iade etmen durumunda siparişindeki ürünün tutarı tarafına iade çeki olarak verilir. Bu çeki belirli Skechers mağazalarımızdan veya skechers.com.tr’de kullanabilirsin. Mağazalarımızda kredi kartına iade yapılmamaktadır.
+
+                                            İade Adresi:
+
+                                            Akçaburgaz mahallesi Muhsin Yazıcıoğlu cad. no: 3 Esenyurt - İSTANBUL
+                                            MNG Kargo İade Kodu: 376988506
+
+                                            İadeler MNG Kargo ile gönderilmelidir. Başka kargo şirketlerinden gelen karşı ödemeli paketler kabul edilmemektedir.
+                                            Müşteri Hattı : 0850 488 02 00
+
+                                            İnceleme Koşulları
+
+                                            Mağazalarımızdan Alınan Ürünlerin İncelemeye Gönderilmesi
+
+                                            Ürününüzü mağazalarımıza getirdikten sonra mağazamız tarafından inceleme formu doldurulur ve size imzalatılır. Ürün inceleme sürecinizin tamamını size verilen bu formda yazan ürün inceleme destek talep numaranız ile takip edebilirsiniz.
+
+                                            2. Ürün inceleme formu açılırken sizinle iletişim kurabilmemiz için GSM numaranız ve varsa e-mail adresiniz mağazamız tarafından istenecektir. Ürün inceleme sürecindeki gelişmeler size sms ve e-mail yoluyla bildirilecektir.
+
+                                            3. Ürününüz, ürüne ait faturanız ve inceleme formunuz ile birlikte İnceleme birimimize gönderilecektir.
+
+                                            4. İnceleme talebinizde üretim kaynaklı bir hata bulunmuş ve inceleme talebiniz kabul edilmişse sms/e-mail ile bilgilendirilmenizin ardından mağazalarımıza giderek değişim işleminizi gerçekleştirebilirsiniz.
+
+                                            5. İnceleme talebinizde üretim kaynaklı bir hata bulunamamış ve inceleme talebiniz reddedilmişse sms/e-mail ile bilgilendirilmenizin ardından ürününüz, inceleme sonuç mektubunuz ile birlikte, inceleme formu açtırdığınız mağazamıza kargo ile gönderilecektir. İnceleme sonucunda ret kararı verilmiş ürününüzü en fazla 60 gün içinde mağazamızdan teslim almanız gerekmektedir. Bu süre içerisinde teslim almadığınız ürünleriniz imha depomuza sevk edilerek imha edilecektir.
+                                            Web Sitemizden Alınan Ürünlerin İncelemeye Gönderilmesi
+
+                                            www.skechers.com.tr web sitemizden aldığınız ürünleri, aşağıda yer alan adresimize ürün faturası ile birlikte gönderebilirsiniz. Faturasız olarak gönderilen ürünler incelemeye alınmayacak ve adresinize geri kargolanacaktır.
+
+                                            2. Ürünleri anlaşmalı kargo firmamız olan MNG Kargo ile 519223635 koduyla göndermeniz durumunda kargo bedeli tarafımızdan karşılanmaktadır. Anlaşmalı kargo firmamız MNG Kargo ile göndermemeniz ya da iade kodunu belirtmemeniz durumunda kargo bedeli tarafımızdan karşılanmaz.
+
+                                            3. İnceleme talebinizde üretim kaynaklı bir hata bulunmuş ve inceleme talebiniz kabul edilmişse e-mail ile bilgilendirilmenizin ardından üyelik hesabınıza fatura tutarı kadar kupon kodu tanımlanacaktır. Tanımlanan kupon sadece skechers.com.tr’ de geçerlidir.
+
+                                            4. İnceleme talebinizde üretim kaynaklı bir hata bulunamamış ve inceleme talebiniz reddedilmişse e-mail ile bilgilendirilmenizin ardından ürününüz inceleme sonuç mektubunuz ile birlikte adresinize kargo ile gönderilecektir.
+
+                                            İnceleme Adresi: (Sadece online alışverişler için geçerlidir)
+                                            Akçaburgaz Mahallesi Muhsin Yazıcıoğlu Cad. No: 3 Esenyurt - İSTANBUL
+
+                                            MNG Kargo İnceleme İade Kodu: 519223635
+
+                                            Bilgi almak istediğiniz konular için Hafta içi 09:00-18:00 saatleri arasında, 0850 488 02 00 numaralı müşteri iletişim merkezimizi arayabilirsiniz.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; " class="my-1 py-2 text-center mt-5 fs-4">Yorumlar (@Model.Product.ProductComments?.Where(x => x.Status).Count())</div>
+                <div class="col-lg-12"
+                     style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
+                    @foreach (var item in Model.Product.ProductComments?.Where(x => x.Status == true))
+                    {
+                        <div class="yorumlar my-5" style="color:black">
+                            <div class="card">
+                                <div class="d-flex">
+                                    <span class="my-2" style="color:black">@*(Sitemizde Kullanıcı isimleri gösterilmiyor!)*@ <i class="fa-solid fa-user"></i> @item.FullName</span>
+                                    <div style="color:gray; font-size:11px; margin-top:11px" class="mx-2"> <i class="fa-solid fa-clock"></i> @(item.CreatedAt.ToString("MMMM dd, yyyy HH:mm")) </div>
+                                </div>
+                                <span class="my-2"> - @item.Text</span>
+                                @if (item.Rate == 1)
+                                {
+                            <div>
+                                <i style="color:gold" class="fa-solid fa-star"></i>
+                                <i style="color:gray" class="fa-solid fa-star"></i>
+                                <i style="color:gray" class="fa-solid fa-star"></i>
+                                <i style="color:gray" class="fa-solid fa-star"></i>
+                                <i style="color:gray" class="fa-solid fa-star"></i>
+
+                            </div>
+                                }
+                                @if (item.Rate == 2)
+                                {
+                            <div style="color:gold">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i style="color:gray" class="fa-solid fa-star"></i>
+                                <i style="color:gray" class="fa-solid fa-star"></i>
+                                <i style="color:gray" class="fa-solid fa-star"></i>
+
+                            </div>
+                                }
+                                @if (item.Rate == 3)
+                                {
+                            <div style="color:gold">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i style="color:gray" class="fa-solid fa-star"></i>
+                                <i style="color:gray" class="fa-solid fa-star"></i>
+
+                            </div>
+                                }
+                                @if (item.Rate == 4)
+                                {
+                            <div style="color:gold">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i style="color:gray" class="fa-solid fa-star"></i>
+                            </div>
+                                }
+                                @if (item.Rate == 5)
+                                {
+                            <div style="color:gold"> 
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                                }
+                                <div>
+                                    <a class="btn btn-outline-danger mt-3 delete-btn" asp-action="DeleteComment" asp-controller="product" asp-route-commentId="@item.Id">Yorumu sil</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- comment modalinda paylas buttona basandan sonra bu modal gelir-->
+        <!-- Modal -->
+        <div class="modal fade" style="z-index: 900000000000000;" id="exampleModalbtn" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">YORUMUN BİZE ULAŞTI</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <p>
+                            Deneyimini bizimle paylaştığın için teşekkürler, yorumun incelendikten sonra yayınlanacaktır.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<!-- Main End -->
+
+@section Scripts{
+    <script src="~/js/_detail.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
+}

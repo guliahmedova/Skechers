@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Create";
+}
+@model IdentityRole
+
+
+<div class="container pt-5" style="background-color: #cff4fc;">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <form method="post" asp-action="create">
+                <div class="form-group">
+                    <label asp-for="Name">Name</label>
+                    <input type="text" class="form-control" asp-for="Name" placeholder="Enter Role Name ">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                </div>
+                <button type="submit" class="btn btn-outline-primary my-4">Create</button>
+            </form>
+        </div>
+    </div>
+</div>

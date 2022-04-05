@@ -1,0 +1,27 @@
+#blueline
+{
+    background-color: #022c57;
+    width: 100%;
+    .blue_boxes
+    {
+        display: flex;
+    }
+    .img
+    {
+        display: flex;
+        p 
+        {
+            margin-top: 28px;
+            color: white;
+            line-height: 1.2;
+            font-family: Mulish, sans-serif;
+            margin-right: auto;
+        }
+    }
+    .container
+    {
+        max-width: 1200px;
+        width: 95%;
+    }
+}
+

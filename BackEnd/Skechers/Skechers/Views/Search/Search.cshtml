@@ -1,0 +1,14 @@
+﻿@model List<Product>
+
+
+@foreach (var item in Model)
+{
+    <div class="card">
+        <a asp-action="detail" asp-controller="product" asp-route-id="@item.Id">
+            <img src="~/uploads/products/@(item.ProductImages.FirstOrDefault(x=>x.PosterStatus==true)?.Image)" alt="" />
+        </a>
+        <a class="productname" asp-action="detail" asp-controller="product" asp-route-id="@item.Id">
+            @item.MarkaName
+        </a>
+    </div>
+}

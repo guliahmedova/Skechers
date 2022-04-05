@@ -1,0 +1,111 @@
+#login {
+  margin-top: 200px;
+
+  .title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #262626;
+    text-transform: uppercase;
+    line-height: 1.2;
+    font-family: Mulish, sans-serif;
+    text-align: center;
+  }
+
+  .card-body {
+    display: flex;
+    justify-content: center;
+    .form-group {
+      label {
+        font-size: 17px;
+        font-weight: 700;
+        text-transform: capitalize;
+        line-height: 1.2;
+        font-family: Mulish, sans-serif;
+      }
+      input {
+        border: 1px solid #707070;
+        background-color: white;
+        height: 50px;
+        font-size: 14px;
+        padding: 15px 25px;
+        max-height: 120px;
+        overflow: hidden;
+        box-shadow: none;
+        text-align: left;
+      }
+      #checkbox {
+        display: flex;
+        justify-content: space-between;
+      }
+      #check {
+        border-radius: 0;
+        border: 1px solid #707070;
+        background-color: #fff !important;
+        height: 50px;
+        font-size: 14px;
+        outline: 0;
+        overflow: hidden;
+        max-height: 120px;
+        cursor: pointer;
+      }
+
+      #check-span {
+        a {
+          font-size: 16px;
+          color: #707070;
+          text-decoration: none;
+        }
+      }
+
+      #check-link {
+        a {
+          font-size: 14px;
+          color: #707070;
+          text-decoration: underline;
+        }
+      }
+
+      #texts {
+        color: #707070 !important;
+        a {
+          color: #707070 !important;
+          text-decoration: underline;
+        }
+        text-align: center;
+      }
+
+      #login-btn {
+        background-color: #002c57 !important;
+        border: none;
+        border-radius: 0;
+        font-size: 14px;
+        text-transform: uppercase;
+        font-weight: 700;
+        height: 50px;
+        width: 100%;
+        color: white;
+      }
+
+      #veya {
+        line-height: 1.2;
+        text-align: center;
+        font-family: Mulish, sans-serif;
+        color: #707070 !important;
+      }
+      #register-part {
+        color: #707070 !important;
+        font-size: 20px;
+        text-align: center;
+        a {
+          text-decoration: underline;
+          color: #707070 !important;
+        }
+      }
+    }
+  }
+}
+
+@font-face {
+  font-family: Mulish;
+  src: url("/asset/fonts/Mulish-Bold.ttf");
+}

@@ -1,0 +1,67 @@
+#forpassword {
+  .title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #262626;
+    text-transform: uppercase;
+    line-height: 1.2;
+    font-family: Mulish, sans-serif;
+    text-align: center;
+  }
+  .text {
+    color: gray;
+    text-align: center;
+  }
+
+  .form-group {
+      .footer 
+      {
+        line-height: 1.2;
+        text-align: center;
+        font-family: Mulish, sans-serif;
+        color: #707070!important;
+        display: flex;
+        justify-content: center;
+        a 
+        {
+            line-height: 1.2;
+            text-align: center;
+            font-family: Mulish, sans-serif;
+            color: #707070!important;
+        }
+      }
+      .btn 
+      {
+          width: 100%;
+      }
+    button {
+      background-color: #002c57 !important;
+      border: none;
+      border-radius: 0;
+      font-size: 14px;
+      text-transform: uppercase;
+      font-weight: 700;
+      height: 50px;
+      width: 100%;
+      color: white;
+      width: 100%;
+    }
+
+    input {
+      text-align: left;
+      height: 50px;
+    }
+  }
+  label {
+    font-size: 17px;
+    font-weight: 700;
+    text-transform: capitalize;
+    line-height: 1.2;
+    font-family: Mulish, sans-serif;
+  }
+}
+
+@font-face {
+  font-family: Mulish;
+  src: url("/asset/fonts/Mulish-Bold.ttf");
+}

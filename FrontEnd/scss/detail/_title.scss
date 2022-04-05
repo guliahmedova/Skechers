@@ -1,0 +1,40 @@
+#detail {
+  width: 100%;
+  font-size: 15px;
+  font-weight: 500;
+  color: #aaa;
+  font-family: MulishBold, sans-serif;
+  margin-top: 16px;
+}
+#filter {
+  .item-nav {
+    cursor: pointer;
+    transition: color 0.3s;
+    text-align: center;
+    font-size: 23px;
+    font-weight: 500;
+    line-height: 40px;
+    font-family: Mulish, sans-serif;
+    text-transform: uppercase;
+    border: 1px solid #707070;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    a {
+      text-decoration: none;
+      color: #707070;
+    }
+
+    &:hover {
+      border: 1px solid #022c57;
+      transition: 0.5s all;
+      a {
+        color: #022c57;
+      }
+    }
+  }
+}
+
+@font-face {
+  font-family: MulishBold;
+  src: url("/asset/fonts/Mulish-Bold.ttf");
+}

@@ -1,0 +1,106 @@
+#favoriler
+{
+    .header-fav
+    {
+        font-size: 20px;
+    text-transform: uppercase;
+    text-align: left!important;
+    font-weight: 700;
+    font-family: BoldMulish, sans-serif;
+    }
+    .text-title
+    {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        background-color: #f5f5f5;
+        padding: 19px 9px;
+        p 
+        {
+            color: #262626;
+    font-size: 16px;
+    text-align: left!important;
+    font-weight: 700;
+        }
+    }
+
+    .card
+    {
+        border: 0ch;
+        #img 
+        {
+            max-width: 108px;
+            width: 29%;
+            float: left;
+            margin-top: 15px;
+            img 
+            {
+                width: 100%;
+                height: auto;
+                box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            }
+        }
+        .card-title
+        {
+            a
+            {
+                font-size: 18px;
+    font-weight: 700;
+    color: #262626;
+    text-decoration: none;
+            }
+            p 
+            {
+                font-size: 12px;
+    color: #727272;
+    text-transform: capitalize;
+            }
+        }
+        .last-part
+        {
+            display: flex;
+            justify-content: space-between;
+            #sebetekle
+            {
+                width: 123px;
+                height: 38px;
+    padding: 0;
+    border-radius: 0;
+    border: 1px solid #262626;
+    background: #fff;
+    color: #262626;
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 11px;
+    text-decoration: none;
+            }
+           input
+            {
+                
+            }
+            #kaldir
+            {
+                text-decoration: underline;
+                margin-top: 10px;
+                font-size: 14px;
+    color: #727272!important;
+    text-transform: capitalize;
+            }
+        }
+        .price
+        {
+            font-size: 18px;
+        }
+    }
+
+    #fav
+    {
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    }
+}
+
+@font-face {
+    font-family: BoldMulish;
+    src: url('/asset/fonts/Mulish-Bold.ttf');
+}

@@ -1,0 +1,131 @@
+#shoes {
+   
+  .card {
+    cursor: pointer;
+    border: 0;
+    margin: 0%;
+    padding: 0%;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: 600px;
+    .card-body {
+      .heart-icon {
+        text-decoration: none;
+        position: absolute;
+        top: 2%;
+        right: 2%;
+        i {
+          color: #bcbcbc;
+          display: block;
+          font-size: 24px;
+          cursor: pointer;
+        }
+      }
+      .heart-icon:hover {
+        i {
+          color: #d82121;
+          transition: 0.5s all;
+          z-index: 22;
+        }
+      }
+
+      .card-text {
+        font-size: 12px;
+        font-weight: 600;
+        font-family: Mulish, sans-serif;
+      }
+      span {
+        color: #757575;
+        font-size: 14px;
+        font-weight: 600;
+      }
+      p {
+        line-height: 1.2;
+        font-family: Mulish, sans-serif;
+        color: #757575;
+      }
+      .card-title {
+        font-family: Mulish, sans-serif;
+        color: #11a311;
+      }
+      .moto-icon {
+        top: 345px;
+        i {
+          color: #bcbcbc;
+          display: block;
+          font-size: 24px;
+          cursor: pointer;
+        position: absolute;
+        top: 14px;
+        }
+      }
+      .hover-box {
+        width: 100%;
+        height: auto;
+        min-height: auto;
+        z-index: 90;
+        background-color: white;
+       
+        .img {
+          width: 16.66%;
+          height: auto;
+          img {
+            width: 100%;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+          }
+        }
+        .text {
+          background-color: white;
+        }
+      }
+      #discount {
+        color: #d82121;
+        font-size: 12px;
+        font-style: italic;
+        span {
+          color: #757575;
+          font-family: Mulish, sans-serif;
+          text-decoration: line-through;
+          font-style: normal;
+        }
+      }
+    }
+    .div_1 {
+      position: absolute;
+      width: 25%;
+      height: 100%;
+      z-index: 2;
+      border-bottom: 3px solid #f5f5f5;
+    }
+    
+    #div1 {
+      position: absolute;
+      display: none;
+    }
+    .div_1:hover {
+      border-bottom: 3px solid gray;
+      transition: 0.5s all;
+    }
+  }
+
+  .card:hover {
+    transition: 0.6s all;
+    .moto-icon {
+      i {
+        color: #022c57;
+        transition: 0.5s all;
+      }
+    }
+    .hover-box {
+      transition: 0.6s all;
+    }
+    #div1 {
+      display: block;
+      transition: 0.9s all;
+    }
+  }
+}

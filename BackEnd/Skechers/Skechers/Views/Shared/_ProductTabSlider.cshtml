@@ -1,0 +1,45 @@
+﻿@model List<Product>
+
+<div class="owl-carousel owl-theme">
+    <!-- backend eger indirim varsa birinci carda ki kimi yazilsin yoxdursa ikinci-->
+    @foreach (Product product in Model)
+    {
+        <div class="item">
+            <div class="card" style="min-height:600px; height:auto">
+                <a asp-action="detail" asp-controller="product" asp-route-id="@product.Id">
+                    <img src="~/uploads/products/@product.ProductImages.FirstOrDefault(x => x.PosterStatus == true)?.Image"
+                         class="card-img-top"
+                         alt="..." />
+                </a>
+                <div class="hover-box">
+                    <div class="img pt-2">
+                        <a asp-action="detail" asp-controller="product" asp-route-id="@product.Id">
+                            <img src="~/uploads/products/@product.ProductImages.FirstOrDefault(x => x.PosterStatus == false)?.Image" alt="" />
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <a asp-action="detail" asp-controller="product" asp-route-id="@product.Id">
+                        <h5 class="card-title mb-2">
+                            @product.MarkaName
+                            @if (product.IsNew == true)
+                            {
+                                <span style="color:forestgreen">Yeni</span>
+                            }
+                        </h5>
+                    </a>
+                    <p class="card-text mb-2">@product.Name</p>
+                    @if (product.DiscountPercent > 0)
+                    {
+                        <p class="discount"><span>@product.SalePrice t</span>-@product.DiscountPercent.ToString("#.") % </p>
+                        <p class="price">@((product.SalePrice*(100-product.DiscountPercent)/100).ToString("#.")) ₺</p>
+                    }
+                    else
+                    {
+                        <p class="price">@product.CostPrice ₺</p>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>

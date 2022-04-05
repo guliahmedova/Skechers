@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+      integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+      integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./css/styke.css" />
+  </head>
+  <body>
+    <!-- Main Start -->
+    <section id="contactus">
+      <div class="container-fluid px-5">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="card">
+              <div class="card-title">İLETİŞİM</div>
+              <div class="card-body">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d385398.5898034751!2d28.731992895837653!3d41.00498228313808!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caa7040068086b%3A0xe1ccfe98bc01b0d0!2s%C4%B0stanbul%2C%20Turkey!5e0!3m2!1sen!2s!4v1645557922849!5m2!1sen!2s"
+                  width="600"
+                  height="450"
+                  style="border: 0"
+                  allowfullscreen=""
+                  loading="lazy"
+                ></iframe>
+              </div>
+              <div class="card-footer">
+                Telefon : <a href="#">0850 488 02 00</a>
+                <p>Çalışma Saatleri: Hafta içi her gün 09:00 – 18:00</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="card mt-5" id="card2">
+              <div class="card-header">
+                <i class="fa-solid fa-comments me-2"></i>
+                <p>Yeni Bildirim</p>
+              </div>
+              <form action="#">
+                <div class="header-div ps-3 mb-3">
+                  <h2>Yeni Bildirim</h2>
+                </div>
+                <select
+                  class="form-select mb-3"
+                  aria-label="Default select example"
+                >
+                  <option selected>Kategori seçiniz</option>
+                  <option value="1">Diğer Destek Talebi</option>
+                  <option value="2">E-Ticaret</option>
+                  <option value="3">Mağaza</option>
+                  <option value="4">Ürün</option>
+                </select>
+                <input
+                  type="text"
+                  class="mb-3"
+                  id="name"
+                  placeholder="Adınız Soyadınız"
+                />
+                <input
+                  type="email"
+                  class="mb-3"
+                  id="email"
+                  placeholder="e-Posta Adresiniz"
+                />
+                <textarea
+                  id="message"
+                  placeholder="Açıklamanızı Giriniz"
+                ></textarea>
+
+                <div class="captcha">
+                  <div class="spinner">
+                    <label>
+                      <input
+                        type="checkbox"
+                        onclick="$(this).attr('disabled','disabled');"
+                      />
+                      <span class="checkmark"><span>&nbsp;</span></span>
+                    </label>
+                  </div>
+                  <div class="text">I'm not a robot</div>
+                  <div class="logo">
+                    <img
+                      src="https://forum.nox.tv/core/index.php?media/9-recaptcha-png/"
+                    />
+                    <p>reCAPTCHA</p>
+                    <small>Privacy - Terms</small>
+                  </div>
+                </div>
+                <div class="btn my-2">
+                  <button type="submit">kaydet</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Main Start -->
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+      integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="./js/_index.js"></script>
+  </body>
+</html>

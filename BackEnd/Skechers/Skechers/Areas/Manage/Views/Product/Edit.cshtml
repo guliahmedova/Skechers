@@ -1,0 +1,129 @@
+﻿@model Product
+
+<div class="container pt-5" style="background-color: #cff4fc">
+    <div class="row">
+        <div class="col-lg-12 mx-auto">
+            <form asp-action="edit" method="post" enctype="multipart/form-data">
+                <div class="form-row">
+
+                    <div class="form-group my-4 col-lg-6">
+                        <label asp-for="Name">Name</label>
+                        <input class="form-control" asp-for="Name" placeholder="Enter Name">
+                        <span class="text-danger" asp-validation-for="Name"></span>
+                    </div>
+                    <div class="form-group my-4 col-lg-6">
+                        <label asp-for="MarkaName">MarkaName</label>
+                        <input class="form-control" asp-for="MarkaName" placeholder="Enter MarkaName">
+                        <span class="text-danger" asp-validation-for="MarkaName"></span>
+                    </div>
+                    <div class="form-group my-5 col-lg-12">
+                        <label asp-for="Desc">Desc</label>
+                        <textarea class="form-control" asp-for="Desc" placeholder="Enter Desc"></textarea>
+                        <span class="text-danger" asp-validation-for="Desc"></span>
+                    </div>
+
+                    <div class="form-group my-3 col-lg-4">
+                        <label asp-for="CostPrice">CostPrice</label>
+                        <input class="form-control" asp-for="CostPrice" placeholder="Enter CostPrice">
+                        <span class="text-danger" asp-validation-for="CostPrice"></span>
+                    </div>
+                    <div class="form-group my-3 col-lg-4">
+                        <label asp-for="SalePrice">SalePrice</label>
+                        <input class="form-control" asp-for="SalePrice" placeholder="Enter SalePrice">
+                        <span class="text-danger" asp-validation-for="SalePrice"></span>
+                    </div>
+                    <div class="form-group my-3 col-lg-4">
+                        <label asp-for="DiscountPercent">DiscountPercent</label>
+                        <input class="form-control" asp-for="DiscountPercent" placeholder="Enter CostPrice">
+                        <span class="text-danger" asp-validation-for="DiscountPercent"></span>
+                    </div>
+
+                    <div class="form-check col-md-4 text-center">
+                        <input class="form-check-input" asp-for="IsNew">
+                        <label class="form-check-label" asp-for="IsNew">
+                            Yeni mi ?
+                        </label>
+                        <span class="text-danger" asp-validation-for="IsNew"></span>
+                    </div>
+                    <div class="form-check col-md-4 text-center">
+                        <input class="form-check-input" asp-for="IsFeatured">
+                        <label class="form-check-label" asp-for="IsFeatured">
+                            Indirim de mi ?
+                        </label>
+                        <span class="text-danger" asp-validation-for="IsFeatured"></span>
+                    </div>
+
+                    <div class="form-group my-3 col-md-4">
+                        <label asp-for="Code">Code</label>
+                        <input class="form-control" asp-for="Code" placeholder="Enter Code">
+                        <span class="text-danger" asp-validation-for="Code"></span>
+                    </div>
+
+                    <div class="form-group my-3 col-md-4">
+                        <label asp-for="GenderId">Example select</label>
+                        <select class="form-control" asp-for="GenderId" asp-items="@new SelectList((List<Gender>)ViewBag.Genders,nameof(Gender.Id),nameof(Gender.Name))">
+                        </select>
+                        <span class="text-danger" asp-validation-for="GenderId"></span>
+                    </div>
+                    <div class="form-group my-3 col-md-4">
+                        <label asp-for="ColorIds">Product Color</label>
+                        <select class="form-control" asp-for="ColorIds" asp-items="@new SelectList((List<Color>)ViewBag.Colors,nameof(Color.Id),nameof(Color.Name))">
+                        </select>
+                        <span class="text-danger" asp-validation-for="ColorIds"></span>
+                    </div>
+                    <div class="form-group my-3 col-md-4">
+                        <label asp-for="SizeIds">Product Sizes</label>
+                        <select class="form-control" asp-for="SizeIds" asp-items="@new SelectList((List<Size>)ViewBag.Sizes,nameof(Size.Id),nameof(Size.Name))">
+                        </select>
+                        <span class="text-danger" asp-validation-for="SizeIds"></span>
+                    </div>
+
+                    <div class="form-group my-5 col-md-4">
+                        <label asp-for="PosterFile">PosterFile</label>
+                        <input class="form-control" asp-for="PosterFile">
+                        <span class="text-danger" asp-validation-for="PosterFile"></span>
+                        <div class="imb-box">
+                            <img width="150" src="~/uploads/products/@Model.ProductImages.FirstOrDefault(x => x.PosterStatus == true)?.Image" />
+                        </div>
+                    </div>
+
+                    <div class="form-group my-5 col-md-4">
+                        <label asp-for="HoverPosterFile">HoverPosterFile</label>
+                        <input class="form-control" asp-for="HoverPosterFile">
+                        <span class="text-danger" asp-validation-for="HoverPosterFile"></span>
+                        <div class="imb-box">
+                            <img width="150" src="~/uploads/products/@Model.ProductImages.FirstOrDefault(x => x.PosterStatus == false)?.Image" />
+                        </div>
+                    </div>
+
+                    <div class="form-group my-5 col-md-12">
+                        <label asp-for="ImageFiles">ImageFiles</label>
+                        <input class="form-control" asp-for="ImageFiles">
+                        <span class="text-danger" asp-validation-for="ImageFiles"></span>
+                        @foreach (var item in Model.ProductImages.Where(x => x.PosterStatus == null))
+                        {
+                            <div class="imb-box d-inline-block">
+                                <img width="150" src="~/uploads/products/@item.Image" />
+                                <input type="hidden" name="ProductImageIds" value="@item.Id" />
+                            </div>
+                        }
+                    </div>
+
+                    <div class="form-row">
+                        @foreach (var item in Model.ProductSizes)
+                        {
+                            <div class="form-group col-lg-4">
+                                <span>@item.Size.Name</span>
+                                <input class="form-control rounded-0" max="100" min="1" asp-for="@item.SizeCount" name="SizeCountList[]" value="@item.SizeCount" style="background: transparent">
+                            </div>
+                        }
+                    </div>
+                    <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                    <div class="col-lg-12 d-flex justify-content-center">
+                        <button type="submit" class="btn btn-info mb-5 mt-5">Edit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+﻿
+@model ForgotPasswordViewModel
+
+    <!-- Main Start -->
+    <main>
+        <section id="forpassword">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 mt-5">
+                        <div class="title mb-5">ŞİFREMİ UNUTTUM</div>
+                        <div class="text">
+                            E-posta adresini gir; şifre sıfırlama talimatlarını sana e-posta
+                            ile gönderelim.
+                        </div>
+                    </div>
+
+                    <form asp-action="forgot" method="post" asp-controller="account">
+                        <div class="row">
+                            <div class="form-group row">
+                                <div class="col-lg-2">
+                                    <label class="mt-4" asp-for="Email">E-Posta*:</label>
+                                </div>
+                                <div class="col-lg-10">
+                                    <input id="email"
+                                           asp-for="Email"
+                                           class="form-control my-4"
+                                           placeholder="E-postanızı girin" />
+                                    <span class="text-danger" asp-validation-for="Email"></span>
+                                    <div class="btn">
+                                        <button type="submit">ŞİFREMİ GÖNDER</button>
+                                    </div>
+                                    <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                                    <div class="footer my-5">
+                                        <p>Zaten üye misin?</p>
+                                        <a asp-action="login" asp-controller="account">Hemen giriş yap</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Main End  -->
+
+
+
+@section Scripts
+{
+@await Html.PartialAsync("_ValidationScriptsPartial.cshtml")
+}
+
+

@@ -1,0 +1,31 @@
+#faq {
+  .maintitle {
+    p {
+      font-size: 26px;
+      margin-top: 30px;
+      margin-bottom: 0;
+      text-transform: uppercase;
+      font-family: Mulish, sans-serif;
+    }
+  }
+
+  .accordion {
+    .accordion-button {
+      cursor: pointer;
+      font-size: 19px;
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+    }
+    .accordion-body {
+      color: gray;
+    }
+  }
+}
+
+@font-face {
+  font-family: Mulish;
+  src: url("/asset/fonts/Mulish-Bold.ttf");
+}
+
+

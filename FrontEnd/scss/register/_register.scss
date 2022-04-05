@@ -1,0 +1,207 @@
+#register {
+  #category
+  {
+    .nese 
+    {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+  }
+  .title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #262626;
+    text-transform: uppercase;
+    line-height: 1.2;
+    font-family: Mulish, sans-serif;
+    text-align: center;
+  }
+
+  .card-body {
+    display: flex;
+    justify-content: center;
+    .form-group {
+      display: flex;
+      #passw
+      {
+        position: relative;
+      }
+      #toggle.hide
+      {
+        background: url('/asset/images/eye-slash-solid.svg');
+        background-size: cover;
+      }
+      .icon
+      {
+        position: absolute;
+        top: 16px;
+        right: 41px;
+        cursor: pointer;
+        text-decoration: none;
+        color: #707070;
+      }
+
+      .icon .fa-eye
+      {
+        display: none;
+      }
+
+      .icon.is-active .fa-eye
+      {
+        display: block;
+      }
+      
+      .icon.is-active .fa-eye-slash
+      {
+        display: none;
+      }
+
+      label {
+        font-size: 17px;
+        font-weight: 700;
+        text-transform: capitalize;
+        line-height: 1.2;
+        font-family: Mulish, sans-serif;
+      }
+      input {
+        border: 1px solid #707070;
+        background-color: white;
+        height: 50px;
+        font-size: 14px;
+        padding: 15px 25px;
+        max-height: 120px;
+        overflow: hidden;
+        box-shadow: none;
+        text-align: left;
+      }
+      #checkbox1 {
+        display: flex;
+        justify-content: space-between;
+      }
+      #check1 {
+        margin-top: 20px;
+        border-radius: 0;
+        border: 1px solid #707070;
+        background-color: #fff !important;
+        height: 23px;
+        font-size: 14px;
+        outline: 0;
+        overflow: hidden;
+        max-height: 120px;
+        cursor: pointer;
+      }
+      #checkbox2 {
+        display: flex;
+        justify-content: space-between;
+      }
+      #check2 {
+        margin-top: 20px;
+        border-radius: 0;
+        border: 1px solid #707070;
+        background-color: #fff !important;
+        height: 23px;
+        font-size: 14px;
+        outline: 0;
+        overflow: hidden;
+        max-height: 120px;
+        cursor: pointer;
+      }
+
+      #check-span {
+        font-size: 14px;
+        color: #707070;
+      }
+
+      #check-link {
+        a {
+          font-size: 14px;
+          color: #707070;
+          text-decoration: underline;
+        }
+      }
+
+      #texts {
+        color: #707070 !important;
+        a {
+          color: #707070 !important;
+          text-decoration: underline;
+        }
+        text-align: center;
+      }
+
+      #login-btn {
+        background-color: #002c57 !important;
+        border: none;
+        border-radius: 0;
+        font-size: 14px;
+        text-transform: uppercase;
+        font-weight: 700;
+        height: 50px;
+        width: 100%;
+        color: white;
+      }
+
+      #veya {
+        line-height: 1.2;
+        text-align: center;
+        font-family: Mulish, sans-serif;
+        color: #707070 !important;
+      }
+      #register-part {
+        color: #707070 !important;
+        font-size: 20px;
+        text-align: center;
+        a {
+          text-decoration: underline;
+          color: #707070 !important;
+        }
+      }
+    
+      .form-select
+      {
+        border: 1px solid #8f8c8c;
+        background-color: white;
+        height: 50px;
+        font-size: 14px;
+        padding: 15px 25px;
+        max-height: 120px;
+        overflow: hidden;
+        box-shadow: none;
+      }
+      #selects
+      {
+          display: flex;
+      }
+
+      #cinsiyyet
+      {
+        display: flex;
+        justify-content: space-evenly;
+        input[type="radio"]
+        {
+          display: none;
+        }
+        label 
+        {
+          color: #002b59;
+          border: 1px solid #002b59;
+    font-size: 14px;
+    line-height: 8px;
+    letter-spacing: 1px;
+    text-align: center;
+    border-radius: 0;
+    overflow: hidden;
+    cursor: pointer;
+    text-transform: uppercase;
+        }
+
+        input[type="radio"]:checked + label
+        {
+           background-color: #002b59;
+           color: white;
+        }
+      }
+    }
+  }
+}
